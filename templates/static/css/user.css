@@ -1,0 +1,6 @@
+.usercontainer a{color: #428bca;padding: 2px;}
+.usercontainer .problemtd>a:hover{text-decoration: underline;}
+.usercontainer {text-align: center;}
+.username{font-size: 16px; font-weight: bold;margin: 20px 0;}
+.usertable{width: 90%;margin: 0 auto;}
+.usertable tr>td{    padding: 8px;  border-bottom: 1px solid #E6E6E6;}

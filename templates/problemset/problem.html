@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SDUSTOnlineJudge</title>
+    <link rel="stylesheet" href="static/common/css/reset.css">
+    <link rel="stylesheet" href="static/common/css/common.css">
+    <link rel="stylesheet" href="static/css/problem.css">
+</head>
+<body>
+<header class="head">
+    <div class="common_Container">
+        <nav class="headnav">
+            <a href="../index/index.html"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
+            <ul class="headnavul clearfix">
+                <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
+                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
+            </ul>
+            <div class="headnavactions">
+                <a href="signup" class="headnavtitle">Sign up</a>
+                <a href="signin" class="headnavtitle">Sign in</a>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="topinfo scroolPic">
+    <div class="common_Container">
+        <div class="topinfoleft topinfocommon">
+            <h1 class="toptitle">山东科技大学OnlineJudge</h1>
+        </div>
+    </div>
+</div>
+
+<div class="problemcontainer">
+    <div class="common_Container">
+        <h1 class="problemtitle">1076 - RP calculator</h1>
+        <div class="probleminfo">
+            <span class="green">Time Limit: </span>1 Sec&nbsp;&nbsp;
+            <span class="green">Memory Limit: </span>128 MB<br>
+            <span class="green">Submit: </span>61&nbsp;&nbsp;<span class="green">Solved: </span>10<br>
+        </div>
+        <dl class="problemdetail">
+            <dt>Description</dt>
+            <dd>
+                As a acmer, RP is important, isn't it?
+                Now this is a RP calculator(see the figure below). There are two rings, each ring has n grids. We call the two grids who have the same degree friendly grids(in figure 1, it's (a0, b0), (a1, b1), ... ,(a7, b7)).  When n people come to test their RP, it will work as follows.
+                First, it will generate 2n (a1...an, b1...bn) random integers.
+                For the first people, it first calculator the product of every pair of numbers in the friendly grids, and the RP is the sum of all the products(see figure 1). For the next people, first the outside ring will be rotated 2*PI/n degrees anticlockwise. Then it will work the same as the first people(see figure 2).
+                It will work until n people's RP are all calculated.
+            </dd>
+            <dt>Input</dt>
+            <dd>The first line of the input file contains an integer T, which show the number of the cases.
+                Then T test cases follows. The first line of every test case contains an integer n(1 &lt;= n &lt;= 50000). The second line contains n numbers a0, a1, ... , an-1.(|ai| &lt; 100). The third line contains n numbers b0, b1, ... , bn-1.(|bi| &lt; 100).
+            </dd>
+
+            <dt>Output</dt>
+            <dd>For each test case, print a line containing the n people's RP, separated by a single space.</dd>
+
+            <dt>Sample Input</dt>
+            <dd class="simpale">
+                <pre>
+1
+
+4
+
+4 3 2 1
+
+1 2 3 4
+                </pre>
+            </dd>
+            <dt>Sample Output</dt>
+            <dd class="simpale">
+                <pre>20 26 28 26</pre>
+            </dd>
+            <dt>HINT</dt>
+            <dd>
+                哈希值计算过程中要注意取模，防止溢出
+
+                可能用到的两个取模公式：(a + b) % mod = (a % mod + b % mod) % mod
+
+                (a – b) % mod = (a % mod – b % mod + mod) % mod
+            </dd>
+            <dt>Append Code</dt>
+            <dd></dd>
+        </dl>
+        <div class="button">
+            <a href="submit" class="btn">Submit</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="common_Container">
+        <a href="#">About</a>
+        <a href="#">Tutorial</a>
+        <a href="#">Tools</a>
+        <a href="#">Clusters</a>
+        <a href="#">Credits</a>
+        <a href="#">Jobs</a>
+        <a href="#">API</a>
+    </div>
+</div>
+</body>
+</html>

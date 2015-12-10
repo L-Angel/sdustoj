@@ -1,0 +1,9 @@
+.submitselect{margin: 10px auto;}
+.submitselect>label{font-size: 16px;font-weight: bold;}
+.submitselect>select{padding: 4px 12px;}
+.submitcontainer { text-align: center; margin: 20px 0; }
+.submitcontainer>.submitcontainertextarea { width: 1000px; height: 400px; }
+/*提交*/
+.button{text-align: center;margin: 10px 0;}
+.button>.btn{padding: 6px 12px; background-color: #428bca;color:#f1f1f1;border: 1px solid #357ebd; border-radius: 4px;margin: 6px 8px;display: inline-block;    -webkit-transition: .3s; -moz-transition: .3s; transition: .3s;}
+.button>.btn:hover{background-color: #3276b1; border-color: #285e8e; }

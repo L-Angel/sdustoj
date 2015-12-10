@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SDUSTOnlineJudge</title>
+    <link rel="stylesheet" href="static/common/css/reset.css">
+    <link rel="stylesheet" href="static/common/css/common.css">
+    <link rel="stylesheet" href="static/css/faq.css">
+</head>
+<body>
+<header class="head">
+    <div class="common_Container">
+        <nav class="headnav">
+            <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
+            <ul class="headnavul clearfix">
+                <li class="headnavli"> <a href="index" class="headnavtitle">Home</a></li>
+                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"> <a href="faq" class="headnavtitle headnavtitleactive">F.A.Qs</a></li>
+            </ul>
+            <div class="headnavactions">
+                <a href="signup" class="headnavtitle">Sign up</a>
+                <a href="signin" class="headnavtitle">Sign in</a>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="topinfo scroolPic">
+    <div class="common_Container">
+        <div class="topinfoleft topinfocommon">
+            <h1 class="toptitle">山东科技大学OnlineJudge</h1>
+        </div>
+    </div>
+</div>
+<div class="faqcontainer">
+    <div class="common_Container">
+        <dl class="faqs">
+            <dt class="quertion"><span>Q:</span>What is the compiler the judge is using and what are the compiler options?</dt>
+            <dd>
+                <span class="answer">A:</span>
+                <div class="answerditail">
+                    <p>The online judge system is running on <a target="_blank" href="http://www.debian.org/">Debian Linux</a>. We are using <a target="_blank" href="http://gcc.gnu.org/">GNU GCC/G++</a> for C/C++ compile, <a target="_blank" href="http://www.freepascal.org">Free
+                        Pascal</a> for pascal compile and <a target="_blank" href="http://www.gnu-pascal.de">sun-java-jdk1.6</a> for Java.
+                        The compile options are:</p>
+                    <p>Our compiler software version:</p>
+                    <ul>
+                        <li>gcc/g++ 4.1.2 20061115 (prerelease) (Debian 4.1.1-21)</li>
+                        <li>glibc 2.3.6</li>
+                        <li>Free Pascal Compiler version 2.2.4-3 [2009/06/04] for i386</li>
+                        <li>Java 1.6.0_06</li>
+                    </ul>
+                </div>
+            </dd>
+
+
+            <dt class="quertion">Q:Why did I get a Compile Error? It's well done!</dt>
+            <dd>
+                <span class="answer">A:</span>
+                <div class="answerditail">
+                    <p>There are some differences between GNU and MS-VC++, such as:</p>
+                    <ol>
+                        <li><span class="hint"><em>main</em></span> must be declared as <span class="notice">int</span>, <span class="notice">void main</span> will end up with a Compile Error.
+                        </li>
+                        <li><span class="hint">i</span> is out of definition after block "<span class="notice">for</span>(<span class="notice">int</span> <span class="notice">i</span>=0...){...}"
+                        </li>
+                        <li><span class="hint">itoa</span> is not an ANSI function.</li>
+                        <li><span class="hint">__int64</span> of VC is not ANSI, but you can use <span class="notice">long long</span> for 64-bit integer.
+                        </li>
+                    </ol>
+                </div>
+            </dd>
+            <dt class="quertion">Q:What is the meaning of the judge's reply XXXXX?</dt>
+            <dd>
+                <span class="answer">A:</span>
+                <div class="answerditail">
+                    <p>Here is a list of the judge's replies and their meaning:</p>
+                    <ul>
+                        <li><span class="label label-default">Pending</span> : The judge is so busy that it can't judge your submit
+                            at the moment, usually you just need to wait a minute and your submit will be judged.
+                        </li>
+                        <li><span class="label label-default">Pending Rejudge</span> : The test datas has been updated, and the
+                            submit will be judged again and all of these submission was waiting for the Rejudge.
+                        </li>
+                        <li><span class="label label-default">Compiling</span> : The judge is compiling your source code.</li>
+                        <li><span class="label label-default">Running &amp; Judging</span>: Your code is running and being judging
+                            by our Online Judge.
+                        </li>
+                        <li><span class="label label-default">Accepted</span> : OK! Your program is correct!.</li>
+                        <li><span class="label label-default">Presentation Error</span> : Your output format is not exactly the same
+                            as the judge's output, although your answer to the problem is correct. Check your output for spaces,
+                            blank lines,etc against the problem output specification.
+                        </li>
+                        <li><span class="label label-default">Wrong Answer</span> : Correct solution not reached for the inputs. The
+                            inputs and outputs that we use to test the programs are not public (it is recomendable to get accustomed
+                            to a true contest dynamic ;-).
+                        </li>
+                        <li><span class="label label-default">Time Limit Exceeded</span> : Your program tried to run during too much
+                            time.
+                        </li>
+                        <li><span class="label label-default">Memory Limit Exceeded</span> : Your program tried to use more memory
+                            than the judge default settings.
+                        </li>
+                        <li><span class="label label-default">Output Limit Exceeded</span>: Your program tried to write too much
+                            information. This usually occurs if it goes into a infinite loop. Currently the output limit is 1M
+                            bytes.
+                        </li>
+                        <li><span class="label label-default">Runtime Error</span> : All the other Error on the running phrase will
+                            get Runtime Error, such as 'segmentation fault','floating point exception','used forbidden functions',
+                            'tried to access forbidden memories' and so on.
+                        </li>
+                        <li><span class="label label-default">Compile Error</span> : The compiler (gcc/g++/gpc) could not compile
+                            your ANSI program. Of course, warning messages are not error messages. Click the link at the judge reply
+                            to see the actual error message.
+                        </li>
+                    </ul>
+                </div>
+            </dd>
+            <dt class="quertion"> Q:How to attend Online Contests?</dt>
+            <dd>
+                <span class="answer">A:</span>
+                <div class="answerditail">
+                    <p> Can you submit programs for any practice problems on this Online Judge?
+                        If you can, then that is the account you use in an online contest.
+                        If you can't, then please <a href="#">register</a> an id with password first.</p>
+                </div>
+            </dd>
+            <dt>
+                Any questions/suggestions please post to <a target="_blank" href="#/">sdustOj@sdust.edu.cn</a>, or post at our <a href="##">FORUM</a>.
+            </dt>
+        </dl>
+    </div>
+</div>
+<div class="footer">
+    <div class="common_Container">
+        <a href="#">About</a>
+        <a href="#">Tutorial</a>
+        <a href="#">Tools</a>
+        <a href="#">Clusters</a>
+        <a href="#">Credits</a>
+        <a href="#">Jobs</a>
+        <a href="#">API</a>
+    </div>
+</div>
+</body>
+</html>

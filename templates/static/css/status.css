@@ -1,0 +1,14 @@
+.statustable{width: inherit; margin-top: 15px;}
+.statustablehead>tr>th{padding: 8px;border-bottom: 2px solid #ddd;font-weight: 600;font-size: 16px;}
+.statustablebody>tr:nth-child(odd) { background-color: #F7F7F7;  }
+.statustablebody>tr>td{padding: 8px; border-bottom: 1px solid #E6E6E6;}
+.statustablebody>tr>td>a{color: #428bca;}
+.statustablebody>tr>td>a:hover,.questionlittd>a:focus {  color: #2a6496; text-decoration: underline; }
+.statustablebody>tr>td.red{color: red;}
+.statustablebody>tr>td.green{color: green;}
+.statustablebody>tr>td.navy{color: navy;}
+/*页码*/
+.pagination{margin: 20px auto;width: 60%;}
+.pagination>a{ padding: 5px 14px;  background-color: #fff;  border: 1px solid #dedede;  /*border-radius: 15px;*/color: #428bca; font-size: 14px;    display: inline-block; width: 60px; text-align: center;}
+.pagination>a:hover,.pagination>a:active{color: #2a6496;  background-color: #eee;}
+.pagination>a.nextpage{float: right;}

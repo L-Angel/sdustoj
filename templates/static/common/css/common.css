@@ -1,0 +1,44 @@
+@media (min-width: 768px){
+    .common_Container {
+        width: 750px; margin:0 auto;
+    }
+}
+@media (min-width: 992px){
+    .common_Container {
+        width: 970px; margin:0 auto;
+    }
+}
+@media (min-width: 1200px){
+    .common_Container {
+        width: 1170px; margin:0 auto;
+    }
+}
+.clearfix:after{  content: "";  display: block;  height: 0;  overflow: hidden;  clear: both;  }
+.clearfix{ *zoom:1;}
+a{text-decoration:none;}
+body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+/*header头部*/
+.head{ background-color: #222;border-color: #080808;}
+.headnav{height: 50px;;line-height: 50px;}
+.headnavalltitle{color: #999;float:left;margin-right:20px; letter-spacing: 1.5px; font-size: 18px;  font-weight: 600;}
+.headnavalltitle:hover{color: #fff;}
+.headnavul{display: inline-block;float: left;}
+.headnavli{float: left;display: inline-block;}
+.headnavtitle{ padding:0 15px; height:inherit;display: inline-block;color: #999;font-size:16px; font-weight: 500;}
+.headnavtitle:hover{color:#fff;}
+.headnavtitleactive{background-color: #080808;color:#fff;}
+.headnavactions { float: right;position: relative;}
+/*下拉menu*/
+.dropdown-menu{ position: absolute; top: 100%; left: 0; z-index: 1000; min-width: 160px; font-size: 14px; list-style: none; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175); box-shadow: 0 6px 12px rgba(0,0,0,0.175); }
+.dropdown-menu>li>a { display: block; padding: 3px 20px; line-height: 1.428571429; color: #333; white-space: nowrap; }
+.dropdown-menu>li>a:hover{ background: #EFEFEF; }
+.dropdown-menu>hr{height: 1px; margin: 9px 0; border:none; background-color: #e5e5e5;}
+
+
+/*页面首部图片*/
+.topinfo{ background: #003840 url(../img/background.jpg)no-repeat center center; z-index: -1;padding-top: 60px; padding-bottom: 120px;}
+.topinfocommon { width: 40%;display: inline-block;}
+h1.toptitle { font-size: 30px; color: #fff;  margin-top: 50px; }
+/*页面底部*/
+.footer{ text-align: center;  padding: 30px 0;  margin-top: 70px;  border-top: 1px solid #e5e5e5;  background-color: #f5f5f5;}
+.footer>.common_Container>a{color: #333;  padding: 0px 10px;  border-right: 1px solid #dedede;}

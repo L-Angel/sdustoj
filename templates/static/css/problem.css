@@ -1,0 +1,9 @@
+.problemtitle{ text-align: center; margin: 20px auto 10px; font-size: 32px;font-weight: 600;}
+.probleminfo { text-align: center; font-size: 14px;}
+.problemdetail>dt { margin: 10px 0; font-size: 20px; font-weight: 600; }
+.problemdetail>dd { margin: 1em 20px 1em;line-height: 1.5;}
+.problemdetail>dd.simpale{background: #F5F5F5; border: 1px solid #ccc;padding: 9.5px;  font-size: 13px; line-height: 1.428571429; color: #333; word-break: break-all; word-wrap: break-word; border-radius: 4px;}
+/*提交*/
+.button{text-align: center;margin: 10px 0;}
+.button>.btn{padding: 6px 12px; background-color: #428bca;color:#f1f1f1;border: 1px solid #357ebd; border-radius: 4px;margin: 6px 8px;display: inline-block;    -webkit-transition: .3s; -moz-transition: .3s; transition: .3s;}
+.button>.btn:hover{background-color: #3276b1; border-color: #285e8e; }

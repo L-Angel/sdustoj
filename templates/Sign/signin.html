@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SDUSTOnlineJudge</title>
+    <link rel="stylesheet" href="static/common/css/reset.css">
+    <link rel="stylesheet" href="static/common/css/common.css">
+    <link rel="stylesheet" href="static/css/signin.css">
+</head>
+<body>
+<header class="head">
+    <div class="common_Container">
+        <nav class="headnav">
+            <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
+            <ul class="headnavul clearfix">
+                <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
+                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
+            </ul>
+            <div class="headnavactions">
+                <a href="signup" class="headnavtitle">Sign up</a>
+                <a href="signin" class="headnavtitle headnavtitleactive">Sign in</a>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="topinfo scroolPic">
+    <div class="common_Container">
+        <div class="topinfoleft topinfocommon">
+            <h1 class="toptitle">山东科技大学OnlineJudge</h1>
+        </div>
+    </div>
+</div>
+<div class="common_Container">
+    <div class="singin">
+        <form action="login" method="post"> {% csrf_token %}
+            <div class="singinheader">Sign in</div>
+            <div class="singinbody">
+                <label for="login_field">Username or email address</label>
+                <input  type="text" name="uname" autocapitalize="off" autocorrect="off" autofocus="autofocus" id="login_field" class="" type="text">
+                <label for="password">Password <a href="#" class="forgetpwd">(forgot password)</a></label>
+                <input type="password" class="" id="password" name="pw" type="password">
+                <input type="submit" id="submit" class="btn" href="javascript:;"/>
+            </div>
+          </form>
+    </div>
+</div>
+<div class="footer">
+    <div class="common_Container">
+        <a href="#">About</a>
+        <a href="#">Tutorial</a>
+        <a href="#">Tools</a>
+        <a href="#">Clusters</a>
+        <a href="#">Credits</a>
+        <a href="#">Jobs</a>
+        <a href="#">API</a>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" language="javascript" src="static/js/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="static/js/signin.js"></script>
