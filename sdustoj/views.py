@@ -92,3 +92,9 @@ def contestlist(request):
 
 def ranklist(request):
     return render_to_response('ranklist/ranklist.html')
+
+def webboard(request):
+    return render_to_response('webboard/webboard.html')
+
+def admin(request):
+    return render_to_response('admin/admin.html')
