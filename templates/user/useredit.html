@@ -15,7 +15,7 @@
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
               <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
@@ -23,7 +23,7 @@
                 <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
             </ul>
             <div class="headnavactions">
-                <a href="user" class="headnavtitle">马禺喆</a>
+                <a href="user" class="headnavtitle">{{ user.nick }}</a>
                 <a href="#" class="headnavtitle headnavtitleactive">More&nbsp;<i class="icon-caret-down"></i></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="##">Edit Profile</a></li>
@@ -46,10 +46,10 @@
         <div class="singinheader">Edit User</div>
         <div class="singinbody">
             <label for="login_field">Username</label>
-            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" value="马禺喆" disabled="disabled"  type="text">
+            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" value="{{ user.nick }}" disabled="disabled"  type="text">
 
             <label for="curpassword">Current Password</label>
-            <input class="" id="curpassword" type="password"  autocomplete="off">
+            <input class="" id="curpassword" type="password"  autocomplete="off" >
 
             <label for="newpassword">New Password</label>
             <input class="" id="newpassword" type="password"  autocomplete="off">

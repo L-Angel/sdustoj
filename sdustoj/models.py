@@ -214,16 +214,16 @@ class Solution(models.Model):
     solution_id = models.AutoField(primary_key=True)
     problem_id = models.IntegerField()
     user_id = models.CharField(max_length=20)
-    time = models.IntegerField()
-    memory = models.IntegerField()
-    in_date = models.DateTimeField()
-    result = models.SmallIntegerField()
-    language = models.IntegerField()
-    ip = models.CharField(max_length=15)
+    time = models.IntegerField(blank=True, null=True)
+    memory = models.IntegerField(blank=True, null=True)
+    in_date = models.DateTimeField(blank=True, null=True)
+    result = models.SmallIntegerField(blank=True, null=True)
+    language = models.IntegerField(blank=True, null=True)
+    ip = models.CharField(max_length=15,blank=True, null=True)
     contest_id = models.IntegerField(blank=True, null=True)
-    valid = models.IntegerField()
-    num = models.IntegerField()
-    code_length = models.IntegerField()
+    valid = models.IntegerField(blank=True, null=True)
+    num = models.IntegerField(blank=True, null=True)
+    code_length = models.IntegerField(blank=True, null=True)
     judgetime = models.DateTimeField(blank=True, null=True)
 
     class Meta:
@@ -265,7 +265,7 @@ class Users(models.Model):
     volume = models.IntegerField()
     language = models.IntegerField()
     password = models.CharField(max_length=32, blank=True, null=True)
-    reg_time = models.DateTimeField(blank=True, null=True)
+    reg_time = models.DateTimeField(blank=True, null=True,auto_now_add=True)
     nick = models.CharField(max_length=100)
     school = models.CharField(max_length=100)
     activated = models.IntegerField()
@@ -273,3 +273,67 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+class Status(models.Model):
+    result_id = models.IntegerField()
+    status = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'status'
+
+
+class Language(models.Model):
+    language_id = models.AutoField(primary_key=True)
+    language = models.IntegerField(blank=True, null=True)
+    language_name = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'language'
+
+
+
+class Statusinfo(models.Model):
+    solution_id = models.AutoField(primary_key=True)
+    problem_id = models.IntegerField()
+    user_id = models.CharField(max_length=20)
+    time = models.IntegerField(blank=True, null=True)
+    memory = models.IntegerField(blank=True, null=True)
+    in_date = models.DateTimeField(blank=True, null=True)
+    language = models.IntegerField(blank=True, null=True)
+    ip = models.CharField(max_length=15,blank=True, null=True)
+    contest_id = models.IntegerField(blank=True, null=True)
+    valid = models.IntegerField(blank=True, null=True)
+    num = models.IntegerField(blank=True, null=True)
+    code_length = models.IntegerField(blank=True, null=True)
+    judgetime = models.DateTimeField(blank=True, null=True)
+    status = models.CharField(max_length=45, blank=True, null=True)
+    language_name = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        db_table = 'statusinfo'
+
+
+class ContestPrivilege(models.Model):
+    privilege = models.CharField(max_length=45, blank=True, null=True)
+    private_id = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'contest_privilege'
+
+
+class Contestinfo(models.Model):
+    privilege = models.CharField(max_length=45, blank=True, null=True)
+    contest_id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
+    defunct = models.CharField(max_length=1)
+    points = models.TextField(blank=True, null=True)
+    langmask = models.IntegerField()
+    contest_mode = models.IntegerField()
+
+    class Meta:
+        db_table = 'contestinfo'

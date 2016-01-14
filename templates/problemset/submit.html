@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/submit.css">
     <link rel = "Shortcut Icon" href="static/img/school.png">
+     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <header class="head">
@@ -15,7 +18,7 @@
             <a href=index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
                <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
@@ -37,23 +40,27 @@
     </div>
 </div>
 <div class="container">
+    <form action="submit_source" method='post'>
     <div class="common_Container">
         <div class="submitcontainer">
             <div class="submitselect">
                 <label class="">Language</label>
                 <select name="language" class="form-control">
-                    <option value="0">C</option>
-                    <option value="1" selected="">C++</option>
-                    <option value="2">Pascal</option>
-                    <option value="3">Java</option>
+                    <option value="C">C</option>
+                    <option value="C++" selected="">C++</option>
+                    <option value="Pascal">Pascal</option>
+                    <option value="Java">Java</option>
                 </select>
             </div>
-            <textarea class="submitcontainertextarea"   spellcheck="false"></textarea>
+            <textarea class="submitcontainertextarea"   name = 'source' spellcheck="false"></textarea>
+            <input type="hidden" name="c_id" value="{{ contestid }}">
+            <input type="hidden" name="p_id" value="{{ problemid }}">
         </div>
         <div class="button">
-            <a href="status" class="btn">Submit</a>
+            <button href="status" class="btn">Submit</button>
         </div>
     </div>
+    </form>
 </div>
 <div class="footer">
     <div class="common_Container">

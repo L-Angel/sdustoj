@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/problemset.css">
     <link rel = "Shortcut Icon" href="static/img/school.png">
+     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <!--headnav-->
@@ -15,9 +18,9 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-               <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
-                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
+               <li class="headnavli"> <a href="/" class="headnavtitle">Home</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="problemset" class="headnavtitle  headnavtitleactive">ProblemSet</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
                 <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
@@ -50,121 +53,13 @@
                 </tr>
             </thead>
             <tbody>
+            {% for item in problemlist %}
                 <tr class="questionlittr">
-                    <td class="questionlittd">1000</td>
-                    <td class="questionlittd"><a href="problem">A+B</a></td>
+                    <td class="questionlittd">{{ item.problem_id }}</td>
+                    <td class="questionlittd"><a href="problem?id={{ item.problem_id }}">{{ item.title }}</a></td>
                     <td class="questionlittd">3881/7414</td>
                 </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
-                <tr class="questionlittr">
-                    <td class="questionlittd">1001</td>
-                    <td class="questionlittd"><a href="problem">Another A+B</a></td>
-                    <td class="questionlittd">1569/3967</td>
-                </tr>
+             {% endfor %}
             </tbody>
         </table>
         <ul class="pagination">

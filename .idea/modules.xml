@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../TCPS/.idea/TCPS.iml" filepath="$PROJECT_DIR$/../TCPS/.idea/TCPS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TCPServer/.idea/TCPServer.iml" filepath="$PROJECT_DIR$/../TCPServer/.idea/TCPServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sdustoj.iml" filepath="$PROJECT_DIR$/.idea/sdustoj.iml" />
     </modules>
   </component>

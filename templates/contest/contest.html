@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/contest.css">
      <link rel = "Shortcut Icon" href="static/img/school.png">
+     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <!--headnav-->
@@ -16,8 +19,8 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-               <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+               <li class="headnavli"> <a href="/" class="headnavtitle">Home</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="set" class="headnavtitle">Set</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
@@ -42,11 +45,12 @@
 <!--container-->
 <div class="container">
     <div class="common_Container">
-        <h1 class="contesttitle">2015山东科技大学ACM校赛初赛</h1>
+        <h1 class="contesttitle">{{ contest.title }}</h1>
         <div class="contestinfo">
-            <span class="green">From: </span>2015-05-09 13:00:00&nbsp;&nbsp;
-            <span class="green">To:</span>2015-05-09 18:00:00&nbsp;&nbsp;
-            <span class="green">Now: </span>2015-12-03 11:01:56&nbsp;&nbsp;<span class="green">Status:</span>Public<br>
+            <span class="green">From: </span>{{ contest.start_time | date:"Y-m-d H:i:s a" }}&nbsp;&nbsp;
+            <span class="green">To:</span>{{ contest.end_time| date:"Y-m-d H:i:s a"  }}&nbsp;&nbsp;
+            <span class="green">Now: </span>{{ cur_time }}&nbsp;&nbsp;
+            <span class="green">Status:</span>{{ contest.privilege }}<br>
         </div>
         <table class="contestable">
             <thead class="contesthead">
@@ -56,34 +60,12 @@
             </tr>
             </thead>
             <tbody class="contestbody">
+            {% for item in problemlist %}
             <tr>
-                <td>A</td>
-                <td><a href="">Student’s question</a></td>
+                <td>{{ item.problem_id }}</td>
+                <td><a href="problem?id={{ item.problem_id }}&contestid={{ contest.contest_id }}">{{ item.title }}</a></td>
             </tr>
-            <tr>
-                <td>B</td>
-                <td><a href="problem">R(N)</a></td>
-            </tr>
-            <tr>
-                <td>C</td>
-                <td><a href="problem">A Math Homework</a></td>
-            </tr>
-            <tr>
-                <td>D</td>
-                <td><a href="problem">Hooked Triangle</a></td>
-            </tr>
-            <tr>
-                <td>E</td>
-                <td><a href="problem">Reversal</a></td>
-            </tr>
-            <tr>
-                <td>F</td>
-                <td><a href="problem">Sequence</a></td>
-            </tr>
-            <tr>
-                <td>G</td>
-                <td><a href="problem">Sequence again</a></td>
-            </tr>
+           {% endfor %}
             </tbody>
         </table>
     </div>

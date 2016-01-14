@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/signup.css">
      <link rel = "Shortcut Icon" href="static/img/school.png">
+     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <header class="head">
@@ -15,7 +18,7 @@
             <a href=index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
                 <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
@@ -38,26 +41,40 @@
 </div>
 <div class="common_Container">
     <div class="singin">
+    <form action="save" method="post">
         <div class="singinheader">Sign up</div>
         <div class="singinbody">
-            <label for="login_field">Username</label>
-            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" type="text">
 
+            <label for="login_field">Username
+             {% if error == 1 %}
+                <span class="red">密码不匹配</span>
+                 {% elif error == 2 %}
+                 <span class="red">请输入正确信息</span>
+                  {% elif error == 3 %}
+                 <span class="red">用户已存在</span>
+            {% endif %}
+            </label>
+            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" type="text" name="uname">
+
+          <label for="login_field">Nick</label>
+            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="nick" class="" type="text" name="nick">
             <label for="password">Password</label>
-            <input class="" id="password" type="password"  autocomplete="off">
+            <input class="" id="password" type="password"  autocomplete="off" name="pwd">
 
             <label for="repeatpassword">Repeat Password</label>
-            <input class="" id="repeatpassword" type="password"  autocomplete="off">
+            <input class="" id="repeatpassword" type="password"  autocomplete="off" name="rpwd">
 
             <label for="email">email</label>
-            <input class="" id="email" type="text"  autocomplete="off">
+            <input class="" id="email" type="text"  autocomplete="off" name="email">
 
             <label for="validate">verification code</label>
-            <input class="validateinput" id="validate" type="text"  autocomplete="off">
+            <input class="validateinput" id="validate" type="text"  autocomplete="off" name="validate">
             <img src="static/common/img/vdimg.jpg" alt="" class="validateimg">
-             <div><a class="btn" href="javascript:;">Sign up</a></div>
+             <div><button type ="submit" class="btn" ><a>Sign up</a></button></div>
         </div>
+    </form>
     </div>
+
 </div>
 <div class="footer">
     <div class="common_Container">

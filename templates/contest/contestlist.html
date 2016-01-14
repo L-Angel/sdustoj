@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/contestlist.css">
     <link rel = "Shortcut Icon" href="static/img/school.png">
+    <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <!--headnav-->
@@ -16,11 +19,11 @@
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
                <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
                 <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
-                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"> <a href="contestlist" class="headnavtitle  headnavtitleactive">Contest</a></li>
                 <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
             </ul>
             <div class="headnavactions">
@@ -46,131 +49,24 @@
             <tr class="questionlittr">
                 <th class="questionlitth">ID</th>
                 <th class="questionlitth">Title</th>
+                <th class="questionlitth">Start Time</th>
                 <th class="questionlitth">End Time</th>
                 <th class="questionlitth">Type</th>
             </tr>
             </thead>
             <tbody>
+            {% for item in contestlist %}
             <tr class="questionlittr">
-                <td class="questionlittd">1000</td>
-                <td class="questionlittd"><a href="contest">2015华中科技大学ACM校赛初赛</a></td>
-                <td class="questionlittd">2015-05-10 00:00:00</td>
-                <td class="questionlittd">Private</td>
+                <td class="questionlittd">{{ item.contest_id }}</td>
+                <td class="questionlittd"><a href="contest?id={{ item.contest_id }}">{{ item.title }}</a></td>
+                <td class="questionlittd">{{ item.start_time | date:"Y-m-d H:i:s a" }}</td>
+                <td class="questionlittd">{{ item.end_time| date:"Y-m-d H:i:s a"  }}</td>
+                <td class="questionlittd">{{ item.privilege }}</td>
             </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">第四届“恒生杯”程序设计大赛初赛 test</a></td>
-                <td class="questionlittd">2015-05-10 00:00:00</td>
-                <td class="questionlittd">Private</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">第三届“恒生杯”程序设计大赛初赛 DAY2</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>
-                <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">第三届“恒生杯”程序设计大赛初赛 DAY2</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>
-                <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">网络预赛</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>
-                <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">网络预赛</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">“阿里巴巴集团杯”ACM-ICPC校内程序设计精英赛 - 网络赛</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">“阿里巴巴集团杯”ACM-ICPC校内程序设计精英赛 - 网络赛</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">“阿里巴巴集团杯”ACM-ICPC校内程序设计精英赛 - 网络赛</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Personal Contest 2010.07.26</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Personal Contest 2010.07.26</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Regional Warmup 10.29 (SEER 2009)</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Regional Warmup 10.29 (SEER 2009)</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Regional Warmup 10.29 (SEER 2009)</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Team Contest 2009.08.06</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Team Contest 2009.08.06</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Team Contest 2009.08.06</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Beijing Warmup Contest</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Beijing Warmup Contest</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">Beijing Warmup Contest</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">HUST Monthly 2008.07.31</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">HUST Monthly 2008.07.31</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
-            <tr class="questionlittr">
-                <td class="questionlittd">1001</td>
-                <td class="questionlittd"><a href="contest">HUST Monthly 2008.07.31</a></td>
-                <td class="questionlittd">2015-05-09 18:00:00</td>                 <td class="questionlittd">Public</td>
-            </tr>
+            {% endfor %}
+
+
+
             </tbody>
         </table>
         <ul class="pagination">

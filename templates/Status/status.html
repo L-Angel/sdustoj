@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/status.css">
      <link rel = "Shortcut Icon" href="static/img/school.png">
+     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="static/js/login.js"></script>
 </head>
 <body>
 <!--headnav-->
@@ -15,10 +18,10 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-            <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="javascript:void(0);" class="headnavtitle">Web Board</a></li>
+            <li class="headnavli"> <a href="/" class="headnavtitle">Home</a></li>
+                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
                 <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
-                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"> <a href="status" class="headnavtitle  headnavtitleactive">Status</a></li>
                 <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
                 <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
                 <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
@@ -56,204 +59,30 @@
                 </tr>
             </thead>
             <tbody class="statustablebody">
+            {% for item in statusinfo %}
+
                 <tr>
-                    <td>110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <td><a href="problem">3234</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
+                    <td>{{ item.solution_id }}</td>
+                    <td><a href="user?uname={{ item.user_id }}">{{ item.user_id }}</a></td>
+                    <td><a href="problem?id={{ item.problem_id }}">{{ item.problem_id }}</a></td>
+                    {% if item.status == 'Accepted' %}
+                         <td class="green">{{ item.status }}</td>
+                    {% else  %}
+                         <td class="red">{{ item.status }}</td>
+                    {% endif %}
+                    {% if item.status == 'Judging' or item.status == 'Pending' or item.status == 'System Error' %}
+                    <td>--</td>
+                    <td>--ms</td>
+                    {% else %}
+                     <td>{{ item.memory }}</td>
+                    <td>{{ item.time }}ms</td>
+                    {% endif %}
+
+                    <td>{{ item.language_name }}</td>
+                    <td>{{ item.code_length }}B</td>
+                    <td>{{ item.in_date }}</td>
                 </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">1017</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="problem">1235</a></td>
-                    <td><a href="##">1001</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
-                <tr>
-                    <td> 110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <td><a href="problem">1207</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
-                </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">2013</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="##">Senling</a></td>
-                    <td><a href="problem">1017</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
-                <tr>
-                    <td> 110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <td><a href="problem">1017</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
-                </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">2987</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="##">Senling</a></td>
-                    <td><a href="problem">2078</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
-                <tr>
-                    <td> 110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <td><a href="problem">1017</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
-                </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">1274</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="##">Senling</a></td>
-                    <td><a href="problem">1275</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
-                <tr>
-                    <td> 110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <td><a href="problem">1230</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
-                </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">2013</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="##">Senling</a></td>
-                    <td><a href="problem">1237</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
-                <tr>
-                    <td> 110871</td>
-                    <td><a href="##">vjudge4</a></td>
-                    <<td><a href="problem">2016</a></td>
-                    <td class="red">Wrong Answer</td>
-                    <td>1716kb</td>
-                    <td>1040ms</td>
-                    <td>C++</td>
-                    <td>2657B</td>
-                    <td>2015-12-02 18:27:35</td>
-                </tr>
-                <tr>
-                    <td>110870</td>
-                    <td><a href="#">vjudge1</a></td>
-                    <td><a href="problem">1017</a></td>
-                    <td class="navy">Compile Error</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>2638B</td>
-                    <td>2015-12-02 18:26:45</td>
-                </tr>
-                <tr>
-                    <td>110869</td>
-                    <td><a href="##">Senling</a></td>
-                    <td><a href="problem">1032</a></td>
-                    <td class="green">Accepted</td>
-                    <td>----</td>
-                    <td>----</td>
-                    <td>C++</td>
-                    <td>41B</td>
-                    <td>2015-12-02 18:14:08</td>
-                </tr>
+            {% endfor %}
 
             </tbody>
         </table>

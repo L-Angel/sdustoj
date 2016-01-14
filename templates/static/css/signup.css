@@ -11,3 +11,4 @@
 /*提交*/
 .singinbody a.btn{ display: inline-block; color: #428bca;padding: 6px 8px;border-radius: 6px; background-color: #F1F1F1; border:1px solid #ccc; color: #333; }
 .singinbody a.btn:hover{ background-color: #EBEBEB; }
+.red{color: #ff1e29;font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;font-size: larger;}
