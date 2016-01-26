@@ -31,6 +31,7 @@ def Login(request, user=None, u="", p=""):
         response = render_to_response('index/index.html')
         response.set_cookie('uname', u, 3600)
         response.set_cookie('pw', p, 3600)
+        response.set_cookie('power',user.defunct,3600)
         return response
     else:
         return render_to_response('Sign/signin.html')
@@ -180,3 +181,18 @@ def sub_source(request):
     sou=SourceCode(solution_id=s,source=source)
     sou.save()
     return HttpResponseRedirect('status')
+
+def admin_login(request):
+    return render_to_response("admin/login.html")
+
+def admin_login_deal(request):
+    return HttpResponseRedirect('admin/index')
+
+def admin_index(request):
+    return render_to_response('admin/index.html')
+
+def admin_addproblem(request):
+    return render_to_response('admin/addproblem.html')
+
+def admin_addproblem_save(request):
+    return HttpResponse()

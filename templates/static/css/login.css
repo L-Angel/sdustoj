@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+input {
+    outline: none;
+}
+/*背景图*/
+body{
+    background:#666666 url("../img/loginbg_1.jpg") no-repeat center top;
+    background-size:100%;
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-size: cover;
+    background-origin: padding-box;
+    width: 100%;
+    padding: 0;
+    font-family: "Microsoft YaHei", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Helvetica, Arial, sans-serif;
+}
+.bg-dot{
+    background: url("../img/login_bg_dot.png") repeat center center;
+    width: 100%; height: 100%;
+    z-index: 2;
+    position: absolute;
+}
+/*登陆框*/
+.login-layout {
+    width: 640px;
+    margin: -200px auto auto -260px;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+}
+.login-layout .top {
+    color: #FFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+    letter-spacing: 1px;
+}
+.login-layout .top h2 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 36px;
+    height: 36px;
+    position: absolute;
+    z-index: 3;
+    top: 30px;
+    left: 0;
+}
+.login-layout .top h6 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    height: 16px;
+    position: absolute;
+    z-index: 3;
+    top: 44px;
+    left: 195px;
+}
+.login-layout .box {
+    height: 40px;
+    margin: 30px 0 0 0;
+}
+.login-layout .box span {
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0 6px 0 0;
+    position: relative;
+    z-index: 1;
+}
+.login-layout .box span label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #555555;
+    display: block;
+    height: 20px;
+    padding-right: 10px;
+    border-right: dotted 1px #999;
+    position: absolute;
+    z-index: 9;
+    top: 10px;
+    left: 10px;
+}
+
+.input-text, .input-password, .input-code {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555555;
+    line-height: 28px;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#CCFFFFFF', endColorstr='#CCFFFFFF');
+    background: rgba(255,255,255,0.8);
+    height: 28px;
+    padding: 6px;
+    border: 0;
+    position: relative;
+    z-index: 1;
+    /*box-shadow: inset 1px 1px 0 rgba(0,0,0,0.5);*/
+    /*-webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,0.5)*//*webkit*//*;*/
+}
+.input-text, .input-password {
+    width: 164px;
+    padding-left: 56px;
+}
+.input-text:focus, .input-password:focus, .input-code:focus {
+    color: #000;
+    background-color: #FFF;
+    box-shadow: 1px 1px 0 0 rgba(0,0,0,0.25);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.code {
+    background-color: #FFFFFF;
+    width: 114px;
+    height: 34px;
+    border: solid 1px #555;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 9;
+    top: -40px;
+    left: -10px;
+    display: none;
+    box-shadow: 0 2px 2px 2px rgba(0,0,0,0.25);
+}
+.input-code {
+    width: 68px;
+}
+/*验证码图片*/
+.code img {
+    width: 90px;
+    height: 26px;
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    left: 4px;
+}
+/*三角形*/
+.code .arrow{
+    width: 0px;
+    height: 0px;
+    line-height: 0px;
+    border-width: 7px 7px 0;
+    border-style: solid dashed dashed dashed;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    bottom: -7px;
+    left: 17px;
+}
+.code a .fa{
+    float: right;
+    font-size: 13px;
+    color: #808080;
+}
+.code .close {
+    display: block;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    right: 4px;
+}
+.code .close:hover, .login-layout .box span .code .change:hover {
+    background-color: #CCC;
+    border-radius: 5px;
+    -webkit-border-radius: 5px/*webkit*/;
+}
+.code .change {
+    display: block;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    position: absolute;
+    z-index: 1;
+    bottom: 4px;
+    right: 4px;
+}
+.code a .fa-times{
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
+.code a .fa-refresh{
+    position: relative;
+}
+/*登陆*/
+.submit {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFF;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#BF000000', endColorstr='#BF000000');
+    background: rgba(0,0,0,0.75);
+    width: 80px;
+    height: 40px;
+    border: 0;
+    cursor: pointer;
+}
+.submit:hover {
+    background-color: #000000 ;
+    box-shadow: 0 0 3px 1px rgba(255,255,255,0.5);
+}
+
+/*输入提示框*/
+.info {
+    background-color: #F7F7F7;;
+    color: #7A7A7A;
+    margin-top: 7px;
+    height: 30px;
+    line-height: 30px;
+    width: 130px;
+    position: relative;
+    left: 97px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+i.triangleup {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid  #EFEFEF;
+    position: absolute;
+    top: -8px;
+    left: 10px;
+}
+i.fa.fa-info-circle {
+    margin-right: 4px;
+    margin-left: 10px;
+    color: #F78538;
+    font-size: 16px;
+}
+div.usernameinfo{
+    display: none;
+}
+div.pwdinfo{
+    width: 160px;
+    display: none;
+}
+div.modiinfo{
+    position: absolute;
+    left: 16px;
+    display: none;
+}
+div.modifierror{
+    position: absolute;
+    width: 110px;
+    left: 16px;
+    display: none;
+}
+div.pwderror{
+    width: 140px;
+    display: none;
+}

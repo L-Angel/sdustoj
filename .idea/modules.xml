@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../TCPS/.idea/TCPS.iml" filepath="$PROJECT_DIR$/../TCPS/.idea/TCPS.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TCPServer/.idea/TCPServer.iml" filepath="$PROJECT_DIR$/../TCPServer/.idea/TCPServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../judger/.idea/judger.iml" filepath="$PROJECT_DIR$/../judger/.idea/judger.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sdustoj.iml" filepath="$PROJECT_DIR$/.idea/sdustoj.iml" />
     </modules>
   </component>

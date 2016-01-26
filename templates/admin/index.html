@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SDUSTOJ</title>
+    <link rel="stylesheet" href="../static/common/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/common/css/base.css"/>
+    <link rel="stylesheet" href="../static/css/index.css"/>
+    <script src="../static/common/js/jquery-2.0.3.min.js"></script>
+    <script src="../static/common/js/jquery.session.js"></script>
+</head>
+<body>
+<div class="maxwrap">
+    <!--头部-->
+    <header class="pageheader">
+        <a href="javascript:;"><h1 class="headertitle">SDUSTOJ</h1></a>
+        <div class="pageheadercontain fl-right">
+            <ul class="headerul">
+                <li class="headerli search"><a href="javascript:;"><i class="fa fa-search"></i></a></li>
+                <li class="headerli bell"><a href="javascript:;"><i class="fa fa-bell"></i></a></li>
+                <li class="headerli setting"><a href="javascript:;"><i class="fa fa-cog"></i></a></li>
+                <li class="headerli info"><a href="javascript:;"><i class="fa fa-info-circle"></i></a></li>
+                <li class="headerli user"><a href="javascript:;">
+                    <img class="user-photo" src="../../common/img/user.jpg" alt="user's Photo">
+                        <span class="user-info">
+                            <small>欢迎您,</small>管理员
+                        </span>
+                    <i class="fa fa-caret-down"></i>
+                </a></li>
+            </ul>
+        </div>
+    </header>
+    <!--左边栏-->
+    <div class="sidebar">
+        <!--快捷按钮组-->
+        <div class="sidebarshorcuts">
+            <button class="btn btn-success"><i class="fa fa-signal"></i></button>
+            <button class="btn btn-info"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-warning"><i class="fa fa-group"></i></button>
+            <button class="btn btn-danger"><i class="fa fa-cogs"></i></button>
+        </div>
+        <!--列表导航-->
+        <ul class="navlist" id="navlistId">
+            <li class="menuli"><a href="admin/index"><i class="fa fa-dashboard fatest"></i>控制台</a></li>
+            <li class="menuli">
+                <a href="javascript:;"><i class="fa fa-desktop fatest"></i>See SDUSTOJ</a>
+            </li>
+            <li class="menuli"><a href="javascript:void(0); name=1"><i class="fa fa-file-code-o fatest"></i>Problem<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li class="menuli"><a href="addproblem">AddProblem</a></li>   <!--OJ题目列表-->
+                    <li class="menuli"><a href="javascript:;">ProblemList</a></li>  <!--添加题目-->
+                    <li class="menuli"><a href="javascript:;">FreeProblemSet</a></li> <!--设置公开题目-->
+                    <li class="menuli"><a href="javascript:;">AddInvalidWordAndAppend</a></li> <!--为某一个题目添加禁用字以及AppendCode-->
+                </ul>
+            </li>
+            <li class="menuli"><a href="javascript:void(0); name=2"><i class="fa fa-newspaper-o fatest"></i>News<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu" style="display: block;">
+                    <li class="menuli active"><a href="javascript:;" >AddNews</a></li>  <!--添加OJ帖子-->
+                    <li class="menuli"><a href="javascript:;" >NewsList</a></li>            <!--查看OJ帖子列表-->
+                    <li class="menuli"><a href="javascript:;" >SetMessage</a></li>            <!--在OJ主页挂信息-->
+                </ul>
+            </li>
+            <li class="menuli"><a href="javascript:void(0); name=3"><i class="fa fa-graduation-cap fatest"></i>Contest<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li class="menuli"><a href="javascript:;">AddContest</a></li>       <!--添加比赛-->
+                    <li class="menuli"><a href="javascript:;">ContestList</a></li>      <!--比赛列表-->
+                    <li class="menuli"><a href="javascript:;">TeamGenerator</a></li>    <!--队伍成批注册（输入前缀+数量，成批生成账号）-->
+                    <li class="menuli"><a href="javascript:;">Tmp Password</a></li>     <!--随机为账号生成密码（也就是考试随机密码功能），也可以解除这个模式-->
+                    <li class="menuli"><a href="javascript:;">Rejudge</a></li> <!--将某一场比赛或者某一个题的代码全部rejudge-->
+                </ul>
+            </li>
+            <li class="menuli"><a href="javascript:void(0);"><i class="fa fa-user-plus fatest"></i>User<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li class="menuli"><a href="javascript:;">AddPrivilege</a></li> <!--设置管理员-->
+                    <li class="menuli"><a href="javascript:;">PrivilegeList</a></li>    <!--管理员列表-->
+                    <li class="menuli"><a href="javascript:;">ChangePassWD</a></li> <!--修改密码-->
+                </ul>
+            </li>
+            <li class="menuli"><a href="javascript:void(0);"><i class="fa fa-cog fatest"></i>Other<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li class="menuli"><a href="javascript:;">ExportProblem</a></li>    <!--导出题目-->
+                    <li class="menuli"><a href="javascript:;">ImportProblem</a></li> <!--导入题目-->
+                    <li class="menuli"><a href="javascript:;">UpdateDatabase</a></li> <!--更新数据库-->
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--内容区域-->
+    <div class="maincontainer">
+        <!--面包屑导航-->
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class=" fa fa-home home-icon"></i><a href="#">Home</a></li>
+                <li class="breadcrumbactive">SDUSTOJ</li>
+            </ul>
+        </div>
+        <!--内容区域-->
+        <div class="container">
+
+        </div>
+    </div>
+</div>
+<script src="../static/common/js/base.js"></script>
+</body>
+</html>
