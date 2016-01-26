@@ -1,0 +1,10 @@
+.contesttitle{ text-align: center; margin: 20px auto 10px; font-size: 32px;font-weight: 600;}
+.contestinfo { text-align: center; font-size: 14px;}
+
+.contestable{width: inherit; margin-top: 15px;}
+.contesthead>tr>th{padding: 8px;border-bottom: 2px solid #ddd;font-weight: 600;font-size: 16px;}
+.contestbody>tr:nth-child(odd) { background-color: #F7F7F7;  }
+.contestbody>tr>td{padding: 8px; border-bottom: 1px solid #E6E6E6;}
+.contestbody>tr>td>a{color: #428bca;}
+.contestbody>tr>td>a:hover,.questionlittd>a:focus {  color: #2a6496; text-decoration: underline; }
+.footer{margin-top:150px;}
