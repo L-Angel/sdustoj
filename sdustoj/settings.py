@@ -83,6 +83,7 @@ DATABASES = {
         'USER':'sdustoj',
         'PASSWORD':'sdust',
         'HOST':'139.129.30.86',
+       # 'HOST':'192.168.131.156',
         'POST':'3306'
     }
 }
