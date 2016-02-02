@@ -3,16 +3,15 @@
  * Created by Lonely on 2015/12/31.
  */
 $(function(){
-    $username= $.cookie('uname')
-    $power= $.cookie('power')
+    $username= $.cookie('uname');
+    $power= $.cookie('power');
    // alert($username);
     if(!isSpace($username)){
         if($power=='A'){
              $('.headnavactions').html('<a class=\"headnavtitle\" href=\"useredit\">'+'Welcome '+$username+'</a>'+'<a class=\"headnavtitle\" href=\"\">'+'Terminal'+'</a>');
         }else{
-              $('.headnavactions').html('<a class=\"headnavtitle\" href=\"useredit\">'+'Welcome '+$username+'</a>');
+             $('.headnavactions').html('<a class=\"headnavtitle\" href=\"useredit\">'+'Welcome '+$username+'</a>');
         }
-
 
     }
 });

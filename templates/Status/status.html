@@ -74,35 +74,25 @@
                     <td>--</td>
                     <td>--ms</td>
                     {% else %}
-                     <td>{{ item.memory }}</td>
-                    <td>{{ item.time }}ms</td>
+                     <td>{{ item.memory }}KB</td>
+                    <td>{{ item.time }}MS</td>
                     {% endif %}
 
                     <td>{{ item.language_name }}</td>
                     <td>{{ item.code_length }}B</td>
-                    <td>{{ item.in_date }}</td>
+                    <td>{{ item.in_date | date:"Y-m-d H:i:s a"}}</td>
                 </tr>
             {% endfor %}
 
             </tbody>
         </table>
         <nav class="pagination">
-            <a class="previouspage page" href="#">← Prev</a>
-            <a class="nextpage page" href="#">Next →</a>
+            <a class="previouspage page" href="status?page_num={{ cur_page }}&op=-">← Prev</a>
+            <a class="nextpage page" href="status?page_num={{ cur_page }}&op=+">Next →</a>
         </nav>
     </div>
 </div>
 
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>

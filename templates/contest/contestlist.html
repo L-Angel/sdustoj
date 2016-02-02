@@ -70,26 +70,14 @@
             </tbody>
         </table>
         <ul class="pagination">
-            <li class="active paginationli"><a href="##">1</a></li>
-            <li class="paginationli"><a href="##">2</a></li>
-            <li class="paginationli"><a href="##">3</a></li>
-            <li class="paginationli"><a href="##">4</a></li>
-            <li class="paginationli"><a href="##">5</a></li>
-            <li class="paginationli"><a href="##">6</a></li>
+            {% for item in page %}
+                <li class="{% if item == cur_page %} active {% endif %}paginationli"><a href="contestlist?page_num={{ item }}">{{ item }}</a></li>
+            {% endfor %}
+
         </ul>
     </div>
 </div>
 
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>

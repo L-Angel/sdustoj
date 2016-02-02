@@ -57,133 +57,26 @@
             </tr>
             </thead>
             <tbody class="ranklisttablebody">
+            {% for user in users %}
                 <tr>
-                    <td class="rank">1</td>
-                    <td><a href="user">201401060124</a></td>
-                    <td><a href="#">lshmouse</a></td>
-                    <td>验题君，请无视</td>
-                    <td>365</td>
-                    <td>1049</td>
-                    <td>34.80%</td>
+                    <td class="rank">{{ user.index }}</td>
+                    <td><a href="user?uname={{ user.user_id }}">{{ user.user_id }}</a></td>
+                    <td><a href="#">{{ user.nick }}</a></td>
+                    <td></td>
+                    <td>{{ user.ac }}</td>
+                    <td>{{ user.sub }}</td>
+                    <td>{{ user.rate }}</td>
                 </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td><a href="user">201301052012</a></td>
-                    <td><a href="#">craig04</a></td>
-                    <td>GilGaMesh</td>
-                    <td>203</td>
-                    <td>387</td>
-                    <td>52.45%</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td><a href="user">201301052007</a></td>
-                    <td><a href="#">chensunrise</a></td>
-                    <td>努力了就好，加油！鲍佳</td>
-                    <td>190</td>
-                    <td>795</td>
-                    <td>23.90%</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td><a href="user">201301051209</a></td>
-                    <td><a href="#">Harry</a></td>
-                    <td>Harry</td>
-                    <td>177</td>
-                    <td>447</td>
-                    <td>39.60%</td>
-                </tr>
-                <tr>
-                    <td class="rank">1</td>
-                    <td><a href="user">201401060124</a></td>
-                    <td><a href="#">lshmouse</a></td>
-                    <td>验题君，请无视</td>
-                    <td>365</td>
-                    <td>1049</td>
-                    <td>34.80%</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td><a href="user">201301052012</a></td>
-                    <td><a href="#">craig04</a></td>
-                    <td>GilGaMesh</td>
-                    <td>203</td>
-                    <td>387</td>
-                    <td>52.45%</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td><a href="user">201301052007</a></td>
-                    <td><a href="#">chensunrise</a></td>
-                    <td>努力了就好，加油！鲍佳</td>
-                    <td>190</td>
-                    <td>795</td>
-                    <td>23.90%</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td><a href="user">201301051209</a></td>
-                    <td><a href="#">Harry</a></td>
-                    <td>Harry</td>
-                    <td>177</td>
-                    <td>447</td>
-                    <td>39.60%</td>
-                </tr>
-                <tr>
-                    <td class="rank">1</td>
-                    <td><a href="user">201401060124</a></td>
-                    <td><a href="#">lshmouse</a></td>
-                    <td>验题君，请无视</td>
-                    <td>365</td>
-                    <td>1049</td>
-                    <td>34.80%</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td><a href="user">201301052012</a></td>
-                    <td><a href="#">craig04</a></td>
-                    <td>GilGaMesh</td>
-                    <td>203</td>
-                    <td>387</td>
-                    <td>52.45%</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td><a href="user">201301052007</a></td>
-                    <td><a href="#">chensunrise</a></td>
-                    <td>努力了就好，加油！鲍佳</td>
-                    <td>190</td>
-                    <td>795</td>
-                    <td>23.90%</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td><a href="user">201301051209</a></td>
-                    <td><a href="#">Harry</a></td>
-                    <td>Harry</td>
-                    <td>177</td>
-                    <td>447</td>
-                    <td>39.60%</td>
-                </tr>
+             {% endfor %}
             </tbody>
         </table>
         <nav class="pagination">
-            <a class="previouspage page" href="#">← Prev</a>
-            <a class="nextpage page" href="#">Next →</a>
+            <a class="previouspage page" href="ranklist?page_num={{ cur_page }}&op=-">← Prev</a>
+            <a class="nextpage page" href="ranklist?page_num={{ cur_page }}&op=+">Next →</a>
         </nav>
     </div>
 </div>
 
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>

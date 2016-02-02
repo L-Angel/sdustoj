@@ -242,24 +242,19 @@ i.fa.fa-info-circle {
     font-size: 16px;
 }
 div.usernameinfo{
-    display: none;
 }
 div.pwdinfo{
     width: 160px;
-    display: none;
 }
 div.modiinfo{
     position: absolute;
     left: 16px;
-    display: none;
 }
 div.modifierror{
     position: absolute;
     width: 110px;
     left: 16px;
-    display: none;
 }
 div.pwderror{
     width: 140px;
-    display: none;
 }

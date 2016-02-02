@@ -4,20 +4,20 @@
    $(function(){
         $("#submit").click(function(){
            $title=$("#title").val();
-            $timelimit=$("timelimit").val();
+            $timelimit=$("#timelimit").val();
             $memlimit=$("#memlimit").val();
             $descripe=$("#editorDesc").val();
             $input=$("#editorOutput").val();
             $output=$("#editorInput").val();
-            $output=$("#editorHint").val();
-            $.post("/admin/adproblem_save",{
+            $hint=$("#editorHint").val();
+            $.post("/admin/addproblem_save",{
                 title:$title,
                 timelimit:$timelimit,
                 memlimit:$memlimit,
                 descripe:$descripe,
                 input:$input,
                 output:$output,
-                hint:hint
+                hint:$hint
             },function(data,textStatus){
                 if(data=="success"){
                     alert_success();
@@ -26,6 +26,9 @@
                     alert_warning();
                 }
             })
+
+
+
      });
        function alert_success(){
          var txt=  "题目添加成功！";

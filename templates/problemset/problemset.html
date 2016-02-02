@@ -57,32 +57,20 @@
                 <tr class="questionlittr">
                     <td class="questionlittd">{{ item.problem_id }}</td>
                     <td class="questionlittd"><a href="problem?id={{ item.problem_id }}">{{ item.title }}</a></td>
-                    <td class="questionlittd">3881/7414</td>
+                    <td class="questionlittd">{{ item.accepted }}/{{ item.submit }}</td>
                 </tr>
              {% endfor %}
             </tbody>
         </table>
         <ul class="pagination">
-            <li class="active paginationli"><a href="##">1</a></li>
-            <li class="paginationli"><a href="##">2</a></li>
-            <li class="paginationli"><a href="##">3</a></li>
-            <li class="paginationli"><a href="##">4</a></li>
-            <li class="paginationli"><a href="##">5</a></li>
-            <li class="paginationli"><a href="##">6</a></li>
+            {% for item in page %}
+
+            <li class="{% if item == cur_page %} active {% endif %}paginationli"><a href="problemset?page_num={{ item }}">{{ item }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </div>
 
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>

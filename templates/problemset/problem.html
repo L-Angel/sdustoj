@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/problem.css">
     <link rel = "Shortcut Icon" href="static/img/school.png">
-     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <script language="javascript" src="static/js/jquery.min.js"></script>
     <script language="javascript" src="static/js/jquery.cookie.js"></script>
     <script language="javascript" src="static/js/login.js"></script>
 </head>
@@ -15,7 +15,7 @@
 <header class="head">
     <div class="common_Container">
         <nav class="headnav">
-            <a href="../index/index.html"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
+            <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
                 <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
                 <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
@@ -47,7 +47,7 @@
         <div class="probleminfo">
             <span class="green">Time Limit: </span>{{ problem.time_limit }}&nbsp;&nbsp;
             <span class="green">Memory Limit: </span>{{ problem.memory_limit }}<br>
-            <span class="green">Submit: </span>61&nbsp;&nbsp;<span class="green">Solved: </span>10<br>
+            <span class="green">Submit: </span>{{ problem.submit }}&nbsp;&nbsp;<span class="green">Solved: </span>{{ problem.accepted }}<br>
         </div>
         <dl class="problemdetail">
             <dt>Description</dt>
@@ -60,7 +60,7 @@
             </dd>
 
             <dt>Output</dt>
-            <dd>problem.output</dd>
+            <dd>{{ problem.output }}</dd>
 
             <dt>Sample Input</dt>
             <dd class="simpale">
@@ -80,21 +80,14 @@
             <dd></dd>
         </dl>
         <div class="button">
-            <a href="submit?c_id={{ contestid }}&p_id={{ problem.problem_id }}" class="btn">Submit</a>
+            <a id="submit" {% if islogin == True %}href="submit?c_id={{ contestid }}&p_id={{ problem.problem_id }}"{% endif %} class="btn">Submit</a>
+            {% if islogin != True %}
+                <a class="red" href="signin">请先登录!</a>
+            {% endif %}
         </div>
     </div>
 </div>
 {% endautoescape %}
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>

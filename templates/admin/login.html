@@ -16,18 +16,21 @@
         <h6>|&nbsp;&nbsp;SDUSTOJ管理平台</h6>
     </div>
     <div class="box">
-        <form action="admin_login_deal">
+        <form action="admin_login_deal" method="post">
         <div  id="form_login">
             <span>
                 <label>帐号</label>
                 <input name="user_name" id="user_name" autocomplete="off" type="text" class="input-text" required="">
-                <div class="info usernameinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>账号不能为空</div>
+                {% if user_error == True %}
+                <div class="info usernameinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>用户错误</div>
+                {% endif %}
             </span>
             <span>
                 <label>密码</label>
                 <input name="password" id="password" class="input-password" autocomplete="off" type="password">
-                 <div class="info pwdinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>密码不少于6个字符</div>
-                 <div class="info pwderror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>账号或密码错误</div>
+                {% if pwd_error == True %}
+                 <div class="info pwderror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>密码错误</div>
+                {% endif %}
             </span>
             <span>
                 <div class="code">
@@ -46,9 +49,11 @@
                         <i class="fa fa-refresh"></i>
                     </a>
                 </div>
+                <!--
                 <input name="captcha" type="text" required="" class="input-code" id="captcha" placeholder="输入验证" autocomplete="off" value="">
                 <div class="info modiinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>请输入验证码</div>
                   <div class="info modifierror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>验证码错误</div>
+                 -->
             </span>
             <span>
                 <input name="" class="submit" type="submit" value="登录">

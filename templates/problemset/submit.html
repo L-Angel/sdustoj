@@ -46,10 +46,9 @@
             <div class="submitselect">
                 <label class="">Language</label>
                 <select name="language" class="form-control">
-                    <option value="C">C</option>
-                    <option value="C++" selected="">C++</option>
-                    <option value="Pascal">Pascal</option>
-                    <option value="Java">Java</option>
+                    {% for item in language %}
+                        <option value="{{ item.language }}">{{ item.language_name }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <textarea class="submitcontainertextarea"   name = 'source' spellcheck="false"></textarea>
@@ -62,16 +61,6 @@
     </div>
     </form>
 </div>
-<div class="footer">
-    <div class="common_Container">
-        <a href="#">About</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Tools</a>
-        <a href="#">Clusters</a>
-        <a href="#">Credits</a>
-        <a href="#">Jobs</a>
-        <a href="#">API</a>
-    </div>
-</div>
+{% include 'base/footer.html' %}
 </body>
 </html>
