@@ -41,11 +41,27 @@
                 </div>
                 <div class="fileupload">
                     <form action="addproblemfile_save" method="post" enctype="multipart/form-data">{% csrf_token %}
-                        <table>
-                        <tr><td>题目编号<input type="text" id="problem_id" name="problem_id"/></td></tr>
-                        <tr><td><input type="file" multiple="multiple" id="files" name="files"/></td></tr>
+                        <!--<table>
+                        <tr><td><span class="problemtitle leftspan">题目编号</span><input type="text" id="problem_id" name="problem_id"/></td></tr>
+                        <tr><td><span class="problemfile leftspan">题目文件</span><input type="file" multiple="multiple" id="files" name="files"/></td></tr>
                         <tr><td><input type="submit" id="submit" name="submit"/></td></tr>
-                        </table>
+                        </table>-->
+                        <div class="fileuploadcon">
+                            <span class="leftspan">题目编号</span>
+                            <select name="problem_id">
+                                <option value="0">1001</option>
+                                <option value="1">1002</option>
+                                <option value="2">1003</option>
+                            </select>
+
+                        </div>
+                        <div class="fileuploadcon">
+                            <span class="leftspan">题目文件</span>
+                            <input type="file" multiple="multiple" id="files" name="files"/>
+                        </div>
+                        <div class="fileuploadcon submitbtn">
+                             <input type="submit" id="submit" name="submit"/>
+                        </div>
                     </form>
                 </div>
             </div>
