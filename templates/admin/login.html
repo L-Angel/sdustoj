@@ -16,7 +16,7 @@
         <h6>|&nbsp;&nbsp;SDUSTOJ管理平台</h6>
     </div>
     <div class="box">
-        <form action="admin_login_deal" method="post">
+        <form action="admin_login_deal" method="post">{% csrf_token %}
         <div  id="form_login">
             <span>
                 <label>帐号</label>

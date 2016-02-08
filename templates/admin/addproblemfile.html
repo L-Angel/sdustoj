@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SDUSTOJ</title>
+	<link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
+    <link rel = "Shortcut Icon" href="../static/img/school.png">
+    <link rel="stylesheet" href="../static/admin/css/addproblemfile.css"/>
+    <script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
+<script src="../static/admin/common/js/jquery.session.js"></script>
+<script src="../static/admin/common/js/base.js"></script>
+<script src="../static/admin/js/addproblemfile.js"></script>
+    <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
+
+
+</head>
+<body>
+<div class="maxwrap">
+    <!--头部-->
+  {% include 'base/adminhead.html' %}
+
+    <!--<script src="admin/common/js/comhead.js"></script>-->
+    <!--左边栏-->
+    <script src="../static/admin/common/js/commenu.js"></script>
+    <!--内容区域-->
+    <div class="maincontainer">
+        <!--面包屑导航-->
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class=" fa fa-home home-icon"></i><a href="#">Home</a></li>
+                <li class="breadcrumbactive">SDUSTOJ</li>
+            </ul>
+        </div>
+        <!--内容区域-->
+        <div class="container">
+            <div class="tablediv">
+                <div class="title">
+                    上传文件
+                </div>
+                <div class="fileupload">
+                    <form action="addproblemfile_save" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <table>
+                        <tr><td>题目编号<input type="text" id="problem_id" name="problem_id"/></td></tr>
+                        <tr><td><input type="file" multiple="multiple" id="files" name="files"/></td></tr>
+                        <tr><td><input type="submit" id="submit" name="submit"/></td></tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="tfoot">
+                <div class="btngroup clearfix">
+                    <!-- <i class="fa fa-trash red" id="delid"></i>
+                    <i class="fa fa-search orange"></i> -->
+                </div>
+
+                <div class="pageinfo">
+                    <!-- <small id="nowprenum">1</small>-<small id="nownextnum">12</small>　共<small id="allnum">12</small>条 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    {% if result == 'success' %}
+        alert_success()
+    {% elif result  == 'failure' %}
+        alert_warning()
+    {% endif %}
+
+</script>
+
+</body>
+</html>

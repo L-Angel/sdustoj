@@ -25,10 +25,10 @@
             <div class="headnavactions">
                 <a href="user" class="headnavtitle">{{ user.nick }}</a>
                 <a href="#" class="headnavtitle headnavtitleactive">More&nbsp;<i class="icon-caret-down"></i></a>
-                <ul class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu " role="menu">
                     <li><a href="##">Edit Profile</a></li>
                     <li><a href="##">Mail</a></li><hr>
-                    <li><a href="##">Logout</a></li>
+                    <li><a href="loginout">Logout</a></li>
                 </ul>
             </div>
         </nav>
@@ -46,7 +46,7 @@
         <div class="singinheader">Edit User</div>
         <div class="singinbody">
             <label for="login_field">Username</label>
-            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" value="{{ user.nick }}" disabled="disabled"  type="text">
+            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" value="{{ user.user_id }}" disabled="disabled"  type="text">
 
             <label for="curpassword">Current Password</label>
             <input class="" id="curpassword" type="password"  autocomplete="off" >

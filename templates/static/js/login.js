@@ -8,9 +8,9 @@ $(function(){
    // alert($username);
     if(!isSpace($username)){
         if($power=='A'){
-             $('.headnavactions').html('<a class=\"headnavtitle\" href=\"useredit\">'+'Welcome '+$username+'</a>'+'<a class=\"headnavtitle\" href=\"\">'+'Terminal'+'</a>');
+             $('.headnavactions').html('<a class=\"headnavtitle\" href=\"user?uname='+$username+'\">'+'Welcome '+$username+'</a>'+'<a class=\"headnavtitle\" href=\"\">'+'Terminal'+'</a>');
         }else{
-             $('.headnavactions').html('<a class=\"headnavtitle\" href=\"useredit\">'+'Welcome '+$username+'</a>');
+             $('.headnavactions').html('<a class=\"headnavtitle\" href=\"user?uname='+$username+'\">'+'Welcome '+$username+'</a>'+ '<a class=\"headnavtitle\" href=\"loginout\">Login Out</a>');
         }
 
     }

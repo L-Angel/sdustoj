@@ -1,0 +1,18 @@
+document.writeln("<header class=\"pageheader\">");
+document.writeln("        <a href=\"javascript:;\"><h1 class=\"headertitle\">SDUSTOJ</h1></a>");
+document.writeln("        <div class=\"pageheadercontain fl-right\">");
+document.writeln("            <ul class=\"headerul\">");
+document.writeln("                <li class=\"headerli headerlihover search\"><a href=\"javascript:;\"><i class=\"fa fa-search\"></i></a></li>");
+document.writeln("                <li class=\"headerli headerlihover bell\"><a href=\"javascript:;\"><i class=\"fa fa-bell\"></i></a></li>");
+document.writeln("                <li class=\"headerli headerlihover setting\"><a href=\"javascript:;\"><i class=\"fa fa-cog\"></i></a></li>");
+document.writeln("                <li class=\"headerli headerlihover info\"><a href=\"javascript:;\"><i class=\"fa fa-info-circle\"></i></a></li>");
+document.writeln("                <li class=\"headerli user\"><a href=\"javascript:;\">");
+document.writeln("                    <img class=\"user-photo\" src=\"admin/common/img/user.jpg\" alt=\"user\'s Photo\">");
+document.writeln("                        <span class=\"user-info\">");
+document.writeln("                            <small>欢迎您,</small>管理员");
+document.writeln("                        </span>");
+document.writeln("                    <i class=\"fa fa-caret-down\"></i>");
+document.writeln("                </a></li>");
+document.writeln("            </ul>");
+document.writeln("        </div>");
+document.writeln("    </header>");

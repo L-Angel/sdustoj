@@ -41,7 +41,7 @@
 </div>
 <div class="usercontainer">
     <div class="common_Container">
-         <h2 class="username">{{ user.user_id }}--{{ user.nick }}</h2>
+         <h2 class="username">{% if login == True %}<a href="useredit">(Modify Info)</a>{% endif %}{{ user.user_id }}--{{ user.nick }}</h2>
          <table class="usertable">
              <tr><td width="15%">No.</td><td width="25%" align="center">4</td><td width="70%" align="center">Solved Problems List</td></tr>
              <tr><td>Solved</td><td align="center"><a href="#">{{ solve }}</a></td>

@@ -9,6 +9,8 @@
             $descripe=$("#editorDesc").val();
             $input=$("#editorOutput").val();
             $output=$("#editorInput").val();
+            $sampleinput=$("#editorSampleOutput").val();
+            $sampleoutput=$("#editorSampleInput").val();
             $hint=$("#editorHint").val();
             $.post("/admin/addproblem_save",{
                 title:$title,
@@ -17,6 +19,8 @@
                 descripe:$descripe,
                 input:$input,
                 output:$output,
+                sampleinput:$sampleinput,
+                sampleoutput:$sampleoutput,
                 hint:$hint
             },function(data,textStatus){
                 if(data=="success"){

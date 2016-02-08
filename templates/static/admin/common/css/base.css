@@ -1,0 +1,278 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+html{
+    font-size: 12px;
+    /*background-color: #e4e6e9;*/
+    background-color: #F7F7F7;
+    font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+}
+body{
+    min-width: 800px;
+}
+.clearfix:after{
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+.clearfix{
+    *zoom:1;
+}
+.fl-right{float: right;}
+/*头部*/
+.pageheader{height:50px;line-height: 50px;background-color: #438EB9;}
+.headerli>a>i.fa{line-height: 50px;}
+.headertitle{float:left;margin-left: 20px;font-size: 20px;font-weight: bold;color: #fff;}
+.headerli{float: left;padding:0 20px;}
+.headerli>a{color: #F5F5F5;text-decoration: none;}
+.headerul>li.headerlihover:hover{background-color: #2a6496;}
+.user .user-photo { line-height: 35px;border-radius:100%;height:35px;position: relative;top: 8px;right:4px;}
+.user .user-info {display: inline-block;line-height: 15px; font-size: 12px;}
+.user .user-info>small { display: block; position: relative; top: -1px;}
+
+/*左边导航栏*/
+.sidebar{width: 190px;background-color: #f5f5f5;float: left;border: 1px solid #ccc;border-width: 0 1px 0 0;}
+.sidebar:before {content: "";display: block;width: 190px;position: fixed;bottom: 0;top: 0;z-index: -1;background-color: #f2f2f2;border: 1px solid #ccc;border-width: 0 1px 0 0;}
+.sidebarshorcuts{
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+ .btn{
+    padding: 5px 8px;
+    color: #fff;
+    background: #abbac3;
+    border: 4px solid  #abbac3;
+
+    text-align: center;
+    display: inline-block;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+    box-shadow: none;
+    -webkit-transition: all ease .15s;
+    transition: all ease .15s;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+ .btn-success{
+    background-color: #87b87f;
+    border-color: #87b87f;
+}
+ .btn-success:hover{
+    background-color: #629b58;
+    border-color: #87b87f;
+}
+.btn-info, .btn-info:focus {
+    background-color: #6fb3e0;
+    border-color: #6fb3e0;
+}
+.btn-info:hover{
+    background-color: #4f99c6;
+    border-color: #6fb3e0;
+}
+.btn-warning{
+    background-color: #e59729;
+    border-color: #e59729;
+}
+.btn-warning:hover{
+    background-color: #e59729;
+    border-color: #ffb752;
+}
+.btn-danger{
+    background-color: #b74635;
+    border-color: #b74635;
+ }
+ .btn-danger:hover {
+    background-color: #b74635;
+    border-color: #d15b47;
+}
+/*导航栏*/
+.navlist>li{
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: #f9f9f9;
+    border-top: 1px solid #fcfcfc;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+}
+.navlist>li>a {
+    display: block;
+    height: 38px;
+    line-height: 36px;
+    padding: 0 20px 0 7px;
+
+    color: #585858;
+    text-shadow: none!important;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+.navlist>li>a:hover{
+    background-color: #FFF;
+    color: #1963aa;
+    border-left: 2px solid #1963aa;
+}
+.navlist>li>a .fatest{
+    /*margin-right: 14px;*/
+    width: 30px;
+    font-size: 1.3rem;
+}
+.navlist>li>a .fa-angle-down{
+    float: right;
+    position: relative;
+    top: 10px;
+}
+.navlist>li .submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+}
+.navlist>li .submenu>li>a {
+    display: block;
+    position: relative;
+    color: #616161;
+    padding: 7px 0 9px 37px;
+    margin: 0;
+    border-top: 1px dotted #e4e4e4;
+}
+.navlist>li .submenu>li>a:hover {
+    color: #4b88b7;
+}
+.navlist>li .submenu>li>a  .fa-angle-down{
+    float: right;
+    position: relative;
+    right: 20px;
+}
+.navlist>li>.submenu li>.submenu>li>a {
+    /*margin-left: 20px;*/
+    margin-left: 26px;
+    padding-left: 22px;
+}
+.navlist>li>.submenu li>.submenu>li>a:hover{
+    color: #316292;
+    text-decoration: underline;
+}
+li.active {
+    /*background-color: #e4e6e9;*/
+    background-color: #EFEFEF;
+}
+/*内容区域导航栏*/
+.maincontainer{
+    margin-left: 190px;
+    margin-right: 0;
+    margin-top: 0;
+    min-height: 100%;
+    padding: 0;
+}
+/*面包屑导航*/
+.breadcrumbs {
+    border-bottom: 1px solid #e5e5e5;
+}
+ul.breadcrumb {
+    background-color: #f5f5f5;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 12px;
+    font-size: 13px;
+    color: #333;
+}
+.breadcrumb>li {
+    display: inline-block;
+    color: #555;
+}
+.breadcrumb>li+li:before {
+    font-family: FontAwesome;
+    font-size: 14px;
+    content: "\f105";
+    color: #b2b6bf;
+    margin-right: 2px;
+    padding: 0 5px 0 2px;
+    position: relative;
+    top: 1px;
+}
+.breadcrumb>li>a {
+    display: inline-block;
+    padding: 0 4px;
+    color: #4c8fbd;
+    text-decoration: solid;
+}
+.breadcrumb .fa-home {
+    margin-left: 4px;
+    margin-right: 2px;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+}
+.breadcrumb>li.breadcrumbactive{
+    color: #555;
+    background: inherit;
+}
+/*弹出成功对话框*/
+.popOperTip {
+    position: fixed;
+    margin:auto;
+    left:0; right:0; top:0; bottom:0;
+    width:140px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #5A5A5A;
+    color: #fff;
+    z-index: 2002;
+    display:none;
+}
+
+.user ul {
+    line-height: 30px;
+    position: absolute;
+    right: 10px;
+    min-width: 160px;
+    background-color: #fff;
+    color: #000;
+    z-index: 1031;
+    border-radius: 0;
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.usermenu li a {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    margin: 10px 0 10px;
+    background-color: #fff;
+	display: block;
+    height: inherit;
+    color: inherit;
+    padding: 0 10px;
+}
+.usermenu hr {
+    margin: 0 auto;
+    background-color: #e5e5e5;
+    border: 0;
+    height: 1px;
+}
+.usermenu li a .fa {
+    margin-right: 10px;
+}
+.usermenu li a:hover {
+    background: #fee188;
+    color: #444;
+}

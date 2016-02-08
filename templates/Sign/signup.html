@@ -15,7 +15,7 @@
 <header class="head">
     <div class="common_Container">
         <nav class="headnav">
-            <a href=index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
+            <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
                 <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
                 <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
@@ -41,7 +41,7 @@
 </div>
 <div class="common_Container">
     <div class="singin">
-    <form action="save" method="post">
+    <form action="save" method="post">{% csrf_token %}
         <div class="singinheader">Sign up</div>
         <div class="singinbody">
 

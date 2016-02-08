@@ -64,11 +64,20 @@ class Contest(models.Model):
     points = models.TextField(blank=True, null=True)
     private = models.IntegerField()
     langmask = models.IntegerField()
-    contest_mode = models.IntegerField()
+    contest_mode = models.IntegerField(null=True)
 
     class Meta:
         managed = False
         db_table = 'contest'
+
+class ContestPrivilege(models.Model):
+    privilege_id = models.AutoField(primary_key=True)
+    privilege = models.CharField(max_length=45, blank=True, null=True)
+    private_id = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'contest_privilege'
 
 
 class ContestProblem(models.Model):
@@ -80,6 +89,16 @@ class ContestProblem(models.Model):
     class Meta:
         managed = False
         db_table = 'contest_problem'
+
+class ContestUsers(models.Model):
+    user_id = models.CharField(max_length=20)
+    contest_id = models.IntegerField(blank=True, null=True)
+    title = models.CharField(max_length=200)
+    num = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'contest_users'
 
 
 class DjangoMigrations(models.Model):
@@ -171,7 +190,7 @@ class Problem(models.Model):
     accepted = models.IntegerField(blank=True, null=True)
     submit = models.IntegerField(blank=True, null=True)
     solved = models.IntegerField(blank=True, null=True)
-
+    fileupload = models.CharField(max_length=1,default='N')
     class Meta:
         managed = False
         db_table = 'problem'
@@ -315,15 +334,6 @@ class Statusinfo(models.Model):
         db_table = 'statusinfo'
 
 
-class ContestPrivilege(models.Model):
-    privilege = models.CharField(max_length=45, blank=True, null=True)
-    private_id = models.CharField(max_length=45, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'contest_privilege'
-
-
 class Contestinfo(models.Model):
     privilege = models.CharField(max_length=45, blank=True, null=True)
     contest_id = models.AutoField(primary_key=True)
@@ -334,6 +344,6 @@ class Contestinfo(models.Model):
     points = models.TextField(blank=True, null=True)
     langmask = models.IntegerField()
     contest_mode = models.IntegerField()
-
+    language=models.CharField(max_length=45, blank=True, null=True)
     class Meta:
         db_table = 'contestinfo'

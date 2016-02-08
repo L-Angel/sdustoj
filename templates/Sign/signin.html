@@ -41,7 +41,8 @@
 </div>
 <div class="common_Container">
     <div class="singin">
-        <form action="login" method="post"> {% csrf_token %}
+        <form action="login" method="post">
+            {% csrf_token %}
             <div class="singinheader">Sign in</div>
             {% if error %}
                 PASSWORD ERROR!

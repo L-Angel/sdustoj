@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SDUSTOJ</title>
+	<base href="<%=basePath%>">
+	<link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
+    <link rel="stylesheet" href="../static/admin/css/contestlist.css"/>
+    <link rel = "Shortcut Icon" href="../static/img/school.png">
+</head>
+<body>
+<div class="maxwrap">
+    <!--头部-->
+    {% include 'base/adminhead.html' %}
+    <!--<script src="admin/common/js/comhead.js"></script>-->
+    <!--左边栏-->
+    <script src="../static/admin/common/js/commenu.js"></script>
+    <!--内容区域-->
+    <div class="maincontainer">
+        <!--面包屑导航-->
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class=" fa fa-home home-icon"></i><a href="#">Home</a></li>
+                <li class="breadcrumbactive">SDUSTOJ</li>
+            </ul>
+        </div>
+        <!--内容区域-->
+        <div class="container">
+            <div class="tablediv">
+                <table class="atticletable">
+                    <!--<caption class="tableheader">文章列表
+                        <span><a href="addarticle.html?moduleId=1&amp;menuName=%u4F01%u4E1A%u6587%u5316&amp;submenuName=%u6587%u5316%u6545%u4E8B" id="jumpAddUrl">添加文章</a></span>
+                    </caption>-->
+                    <thead>
+                    <tr class="trheader">
+
+                        <th>ContestId</th>
+                        <th>Title</th>
+                        <th>StartDate</th>
+						<th>EndDate</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Private</th>
+                        <th>Langmask</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    {% for item in contests %}
+                        <tr>
+                        <td>{{ item.contest_id }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.start_time|date:'Y-m-d H:i:s a' }}</td>
+                        <td>{{ item.end_time|date:'Y-m-d H:i:s a'  }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ item.privilege }}</td>
+                        <td>{{ item.language }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tfoot">
+                <div class="btngroup clearfix">
+                    <!-- <i class="fa fa-trash red" id="delid"></i>
+                    <i class="fa fa-search orange"></i> -->
+                </div>
+                <div class="pagegroup">
+                    <span class="fa fa-angle-double-left " id="firstpage"></span>
+                    <span class="fa fa-angle-left " id="prepage"></span>
+                    <span class="fa fa-angle-right " id="nextpage"></span>
+                    <span class="fa fa-angle-double-right" id="lastpage"></span>
+                </div>
+                <div class="pageinfo">
+                    <!-- <small id="nowprenum">1</small>-<small id="nownextnum">12</small>　共<small id="allnum">12</small>条 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
+<script src="../static/admin/common/js/jquery.session.js"></script>
+<script src="../static/admin/common/js/base.js"></script>
+<script src="../static/admin/js/contestlist.js"></script>
+<script>
+    $(function(){
+	// 全局变量
+
+
+$("#nextpage").bind("click",function() {
+window.location.href="contestlist?op=+&page_num={{ cur_page }}";
+})
+$("#prepage").bind("click",function() {
+window.location.href="contestlist?op=-&page_num={{ cur_page }}";
+})
+
+	$("#firstpage").bind("click",function() {
+window.location.href="contestlist?page_num=1";
+})
+	$("#lastpage").bind("click",function() {
+window.location.href="contestlist?page_num={{ totalpage }}";
+})
+
+});
+</script>
+</body>
+</html>

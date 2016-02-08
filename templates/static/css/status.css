@@ -5,6 +5,7 @@
 .statustablebody>tr>td>a{color: #428bca;}
 .statustablebody>tr>td>a:hover,.questionlittd>a:focus {  color: #2a6496; text-decoration: underline; }
 .statustablebody>tr>td.red{color: red;}
+.statustablebody>tr>td>a.compilered{color: red;}
 .statustablebody>tr>td.green{color: green;}
 .statustablebody>tr>td.navy{color: navy;}
 /*页码*/

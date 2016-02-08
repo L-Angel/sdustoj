@@ -67,6 +67,8 @@
                     <td><a href="problem?id={{ item.problem_id }}">{{ item.problem_id }}</a></td>
                     {% if item.status == 'Accepted' %}
                          <td class="green">{{ item.status }}</td>
+                    {% elif item.status == 'Compile Error' %}
+                        <td><a class='compilered' href="compileerror?solution_id={{ item.solution_id }}">{{ item.status }}</a></td>
                     {% else  %}
                          <td class="red">{{ item.status }}</td>
                     {% endif %}

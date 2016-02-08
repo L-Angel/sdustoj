@@ -36,7 +36,7 @@ body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
 
 
 /*页面首部图片*/
-.topinfo{ background: #003840 url(../img/xiaowu.gif)no-repeat center center; z-index: -1;padding-top: 60px; padding-bottom: 120px;}
+.topinfo{ background: #003840 url(../img/background.jpg)no-repeat center center; z-index: -1;padding-top: 60px; padding-bottom: 120px;}
 .topinfocommon { width: 40%;display: inline-block;}
 h1.toptitle { font-size: 30px; color: #fff;  margin-top: 50px; }
 /*页面底部*/
