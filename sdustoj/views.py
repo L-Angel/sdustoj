@@ -12,6 +12,7 @@ import config
 import os
 import re
 import datetime
+import  shutil
 from django.utils.timezone import utc
 __author__ = 'Lonely'
 
@@ -308,6 +309,7 @@ def admin_index(request):
 
 def admin_addproblem(request):
     return render_to_response('admin/addproblem.html')
+
 @csrf_exempt
 def admin_addproblem_save(request):
     title=request.POST.get('title')
@@ -336,6 +338,7 @@ def admin_addcontest(request):
     language=Language.objects.all()
     privilege=ContestPrivilege.objects.all();
     return render_to_response("admin/addcontest.html",{'language':language,'privilege':privilege})
+
 @csrf_exempt
 def admin_addcontest_save(request):
     flag=True
@@ -403,7 +406,8 @@ def admin_problemlist(request):
 
 def admin_addproblemfile(request):
     c=RequestContext(request)
-    return render_to_response('admin/addproblemfile.html',c)
+    problems=Problem.objects.all()
+    return render_to_response('admin/addproblemfile.html',{'problems':problems},c)
 
 
 def admin_addproblemfile_save(request):
@@ -415,6 +419,9 @@ def admin_addproblemfile_save(request):
     if len(problem) > 0:
         try:
             if not os.path.exists(data_path):
+                os.mkdir(data_path)
+            else:
+                shutil.rmtree(data_path)
                 os.mkdir(data_path)
             for f in files:
                 destination = open(data_path+'/'+f.name,'wb+')
@@ -456,3 +463,4 @@ def loginout(request):
     response.delete_cookie("uname",path="/")
     response.delete_cookie("power",path="/")
     return response
+

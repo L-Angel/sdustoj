@@ -49,9 +49,9 @@
                         <div class="fileuploadcon">
                             <span class="leftspan">题目编号</span>
                             <select name="problem_id">
-                                <option value="0">1001</option>
-                                <option value="1">1002</option>
-                                <option value="2">1003</option>
+                                {% for item in problems %}
+                                <option value="{{ item.problem_id }}">{{ item.problem_id }}</option>
+                                {% endfor %}
                             </select>
 
                         </div>
