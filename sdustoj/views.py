@@ -49,7 +49,6 @@ def Login(request, user=None, u="", p=""):
             result = 'true'
         else:
             result = 'false'
-    print(result)
     if result == 'true':
         response = HttpResponseRedirect('index',c)
         response.set_cookie('uname', u, 3600)
@@ -128,7 +127,9 @@ def problemset(request):
 
 def submit(request):
     c=RequestContext(request)
-    contestid = request.GET.get('c_id')
+    contestid=-1
+    if 'c_id' in request.GET:
+        contestid = request.GET.get('c_id')
     problemid = request.GET.get('p_id')
     language=Language.objects.all()
     return render_to_response('problemset/submit.html',{'problemid':problemid,'language':language,'contestid':contestid},c)
@@ -193,7 +194,10 @@ def status(request):
             page_num = page_num - 1
     if 'c_id' in request.GET:
         contest_id=request.GET.get('c_id')
-        statusinfo=Statusinfo.objects.filter(contest_id=contest_id).order_by('-solution_id')
+        if contest_id != -1 and contest_id != None and contest_id != 'None':
+            statusinfo=Statusinfo.objects.filter(contest_id=contest_id).order_by('-solution_id')
+        else:
+            statusinfo = Statusinfo.objects.all().order_by('-solution_id')
     else:
         statusinfo = Statusinfo.objects.all().order_by('-solution_id')
     p=Paginator(statusinfo,config.page_count)
@@ -216,7 +220,6 @@ def contest(request):
     contestid = request.GET.get('id')
     problem_list = ContestProblem.objects.filter(contest_id=contestid).order_by('problem_id').values('contest_id','id','problem_id','title','num')
     for item in problem_list:
-        print item
         status=Statusinfo.objects.filter(user_id=uname,problem_id=item['problem_id'],contest_id=item['contest_id'])
         if len(status) > 0:
             item['status']='Y'
@@ -263,7 +266,6 @@ def contestlist(request):
     page=p.page_range
     if len(page) <= 0:
         page = [1]
-    print cur_time,s_time,e_time,contestlist[0]['status']
     return render_to_response('contest/contestlist.html',{'contestlist':contestlist,'page':page,'cur_page':page_num},c)
 
 
@@ -333,7 +335,7 @@ def sub_source(request):
     user=Users.objects.get(user_id=username)
     user.submit=user.submit+1
     user.save()
-    return HttpResponseRedirect('status?c_id='+contestid,c)
+    return HttpResponseRedirect('status?c_id='+str(contestid),c)
 
 def admin_login(request):
     c=RequestContext(request)
@@ -353,7 +355,7 @@ def admin_login_deal(request):
             user = Users.objects.get(user_id=user_name)
             if str(user.password) == pwd:
                 if user.defunct != 'C':
-                    response=HttpResponseRedirect('index',c)
+                    response=HttpResponseRedirect('index?menuName=&submenuName=See%20SDUSTOJ',c)
                     response.set_cookie('uname',user_name,3600)
                     response.set_cookie('power',user.defunct,3600)
                     return response
@@ -362,7 +364,6 @@ def admin_login_deal(request):
             else:
                 return render_to_response('admin/login.html',{'pwd_error':True},c)
         except Exception,e:
-            print e
             return render_to_response('admin/login.html',{'user_error':True},c)
     else:
         return render_to_response('admin/login.html',{'user_error':True},c)
@@ -413,7 +414,6 @@ def admin_addcontest_save(request):
     c=Contest(defunct='C',title=title,start_time=datetime.datetime.strptime(starttime,'%Y-%m-%d %H:%M:%S').replace(tzinfo=utc),end_time=datetime.datetime.strptime(endtime,'%Y-%m-%d %H:%M:%S').replace(tzinfo=utc),private=int(contest_private),langmask=int(language))
     c.save()
     contestid=c.contest_id
-    print contestid,re.split(';|,',str(problems)),re.split(';|,',str(users))
     for problem in re.split(';|,',str(problems)):
         try:
             if problem != '':
@@ -421,7 +421,6 @@ def admin_addcontest_save(request):
                 cp=ContestProblem(contest_id=contestid,title=item.title,problem_id=item.problem_id,num=0)
                 cp.save()
         except Exception,e:
-            print e
             flag=False
     for user in re.split(';|,',str(users)):
         try:
@@ -430,7 +429,6 @@ def admin_addcontest_save(request):
                 cu=ContestUsers(user_id=user,contest_id=contestid,num=0)
                 cu.save()
         except Exception,e:
-            print e
             flag=False
     if flag==True:
         return HttpResponse("success",c)
@@ -560,7 +558,6 @@ def admin_dealnews(request):
             news=News.objects.get(news_id=news_id)
             news.delete()
         except Exception,e:
-            print e
             return HttpResponse('failure',c)
     if op == 'release':
         release=request.POST.get('release')
@@ -569,7 +566,6 @@ def admin_dealnews(request):
             news.release=int(release)
             news.save()
         except Exception,e:
-            print e
             return HttpResponse('failure',c)
     return HttpResponse('success',c)
 
@@ -669,7 +665,6 @@ def getcodeinfo(request):
         json_data='{\"source\":\"'+code+'\"}';
         return HttpResponse(json_data,c)
     except Exception,e:
-        print e
         solution_id=-1
         return HttpResponse("{}",c)
 
@@ -686,16 +681,13 @@ def admin_deal_data(request):
             problem=Problem.objects.get(problem_id=problem_id)
             problem.delete()
         except Exception,e:
-            print e
             return HttpResponse("{\"result\":\"failure\"}",c)
     elif type == 'contest':
         try:
             contest_id=request.POST.get('c_id')
             contest=Contest.objects.get(contest_id=contest_id)
             contest.delete()
-            print 'c_id',contest_id
         except Exception,e:
-            print e
             return HttpResponse("{\"result\":\"failure\"}",c)
     elif type == 'user':
         try:
@@ -703,9 +695,7 @@ def admin_deal_data(request):
             user=Users.objects.get(user_id=user_id)
             user.delete()
         except Exception,e:
-            print e
             return HttpResponse("{\"result\":\"failure\"}",c)
-    print 'deal data : success'
     return HttpResponse("{\"result\":\"success\"}",c)
 
 def admin_dealuser(request):
@@ -713,7 +703,6 @@ def admin_dealuser(request):
     pwd=request.POST.get('pwd')
     uname=request.POST.get('uname')
     power=request.POST.get('power')
-    print "username:",uname,"password:",pwd,"defunct:",power
     try:
         user=Users.objects.get(user_id=uname)
         if pwd not in reserved:
@@ -722,7 +711,6 @@ def admin_dealuser(request):
             user.defunct=power
         user.save()
     except Exception,e:
-        print e
         return HttpResponse("{\"result\":\"failure\"}",c)
     return HttpResponse("{\"result\":\"success\"}",c)
 

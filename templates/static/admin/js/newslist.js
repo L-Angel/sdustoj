@@ -7,7 +7,7 @@ $(function () {
     });
 
 
-    $("#operate").bind("click", function () {
+    $("body").delegate("#operate","click", function () {
 
         $news_id = $(this).parent().parent().parent().children().eq(0).text();
         $release = 0

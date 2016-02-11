@@ -7,7 +7,6 @@ class QtsAuthenticationMiddleware(object):
             power=''
             if 'power' in request.COOKIES:
                 power = request.COOKIES.get('power')
-                print power
             if power == 'A' or power =='B':
                 pass
             else :

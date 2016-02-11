@@ -16,7 +16,7 @@ document.writeln("        <!--列表导航-->");
 document.writeln("        <ul class=\"navlist\" id=\"navlistId\">");
 document.writeln("            <li class=\"menuli\"><a href=\"javascript:void(0);\"><i class=\"fa fa-dashboard fatest\"></i>Home</a></li>");
 document.writeln("            <li class=\"menuli\">");
-document.writeln("                <a href=\"index\"  target=\"_Blank\"><i class=\"fa fa-desktop fatest\"></i>See SDUSTOJ</a>");
+document.writeln("                <a href=\"\"  target=\"_Blank\"><i class=\"fa fa-desktop fatest\"></i>See SDUSTOJ</a>");
 document.writeln("            </li>");
     if(power=='A') {
         document.writeln("            <li class=\"menuli\"><a href=\"javascript:void(0); name=1\"><i class=\"fa fa-file-code-o fatest\"></i>Problem<i class=\"fa fa-angle-down\"></i></a>");
