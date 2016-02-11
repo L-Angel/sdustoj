@@ -3,14 +3,15 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>SDUSTOJ</title>
-	<link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
-    <link rel = "Shortcut Icon" href="../static/img/school.png">
+    <link rel="Shortcut Icon" href="../static/img/school.png">
     <link rel="stylesheet" href="../static/admin/css/addproblemfile.css"/>
     <script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
-<script src="../static/admin/common/js/jquery.session.js"></script>
-<script src="../static/admin/common/js/base.js"></script>
-<script src="../static/admin/js/addproblemfile.js"></script>
+    <script language="javascript" src="../static/js/jquery.cookie.js"></script>
+    <script src="../static/admin/common/js/jquery.session.js"></script>
+    <script src="../static/admin/common/js/base.js"></script>
+    <script src="../static/admin/js/addproblemfile.js"></script>
     <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
 
@@ -19,7 +20,7 @@
 <body>
 <div class="maxwrap">
     <!--头部-->
-  {% include 'base/adminhead.html' %}
+    {% include 'base/adminhead.html' %}
 
     <!--<script src="admin/common/js/comhead.js"></script>-->
     <!--左边栏-->
@@ -50,7 +51,7 @@
                             <span class="leftspan">题目编号</span>
                             <select name="problem_id">
                                 {% for item in problems %}
-                                <option value="{{ item.problem_id }}">{{ item.problem_id }}</option>
+                                    <option value="{{ item.problem_id }}">{{ item.problem_id }}</option>
                                 {% endfor %}
                             </select>
 
@@ -60,7 +61,7 @@
                             <input type="file" multiple="multiple" id="files" name="files"/>
                         </div>
                         <div class="fileuploadcon submitbtn">
-                             <input type="submit" id="submit" name="submit"/>
+                            <input type="submit" id="submit" name="submit"/>
                         </div>
                     </form>
                 </div>

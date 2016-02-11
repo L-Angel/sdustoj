@@ -3,20 +3,19 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>SDUSTOJ</title>
-
     <link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
-    <link rel="stylesheet" href="../static/admin/css/contestlist.css"/>
-    <link rel="Shortcut Icon" href="../static/img/school.png">
+    <link rel="stylesheet" href="../static/admin/css/newslist.css"/>
     <link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
-    <script language="javascript" src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
-    <script language="javascript" src="../static/js/jquery.cookie.js"></script>
 
+    <link rel="Shortcut Icon" href="../static/img/school.png">
+    <script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
+    <script language="javascript" src="../static/js/jquery.cookie.js"></script>
     <script src="../static/admin/common/js/jquery.session.js"></script>
     <script src="../static/admin/common/js/base.js"></script>
     <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../static/admin/js/contestlist.js"></script>
 
+    <script src="../static/admin/js/newslist.js"></script>
 </head>
 <body>
 <div class="maxwrap">
@@ -43,36 +42,40 @@
                     </caption>-->
                     <thead>
                     <tr class="trheader">
-
-                        <th>ContestId</th>
+                        <th>newsId</th>
                         <th>Title</th>
-                        <th>StartDate</th>
-                        <th>EndDate</th>
-                        <th>Status</th>
+                        <th>Time</th>
                         <th>Edit</th>
-                        <th>Private</th>
-                        <th>Langmask</th>
+                        <th>Type</th>
+                        <th>Release</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody id="tbody">
-                    {% for item in contests %}
+                    {% for item in news %}
                         <tr>
-                            <td>{{ item.contest_id }}</td>
-                            <td>{{ item.title }}</td>
-                            <td>{{ item.start_time|date:'Y-m-d H:i:s a' }}</td>
-                            <td>{{ item.end_time|date:'Y-m-d H:i:s a' }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ item.privilege }}</td>
-                            <td>{{ item.language }}</td>
+                            <td>{{ item.news_id }}</td>
+                            <td>{{ item.comment }}</td>
+                            <td>{{ item.time|date:'Y-m-d H:i:s a' }}</td>
+                            <td>{{ item.author }}</td>
+
+                            {% if item.type == 0 %}
+                                <td>公告</td>
+                            {% elif item.type == 1 %}
+                                <td>通知</td>
+                            {% endif %}
+                            {% if item.release == 0 %}
+                                <td>未发布</td>
+                            {% elif item.release == 1 %}
+                                <td>已发布</td>
+                            {% endif %}
+
                             <td>
                                 <div class="ownbtngroup">
-                                    <a href='javascript:void(0);' id="delete">删除</a>
+                                    <a href="javascript:;" id="operate">操作</a><a href="" id="delete">删除</a>
                                 </div>
                             </td>
                         </tr>
-
                     {% endfor %}
                     </tbody>
                 </table>
@@ -95,24 +98,22 @@
         </div>
     </div>
 </div>
-
 <script>
     $(function () {
-        // 全局变量
 
 
         $("#nextpage").bind("click", function () {
-            window.location.href = "contestlist?op=+&page_num={{ cur_page }}";
+            window.location.href = "newslist?op=+&page_num={{ cur_page }}";
         })
         $("#prepage").bind("click", function () {
-            window.location.href = "contestlist?op=-&page_num={{ cur_page }}";
+            window.location.href = "newslist?op=-&page_num={{ cur_page }}";
         })
 
         $("#firstpage").bind("click", function () {
-            window.location.href = "contestlist?page_num=1";
+            window.location.href = "newslist?page_num=1";
         })
         $("#lastpage").bind("click", function () {
-            window.location.href = "contestlist?page_num={{ totalpage }}";
+            window.location.href = "newslist?page_num={{ totalpage }}";
         })
 
     });

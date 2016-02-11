@@ -12,3 +12,12 @@
 .pagination .paginationli>a{color: #428bca;}
 .pagination .paginationli>a:hover, .pagination .paginationli>a:focus{ color: #2a6496; background-color: #eee;}
 .pagination .paginationli.active>a{  background-color: #428bca;  border-color: #428bca; color:#fff;}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}
+.gray{
+    color:grey;
+}

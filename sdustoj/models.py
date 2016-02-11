@@ -11,7 +11,7 @@ __author__ = 'Lonely'
 # Feel free to rename the models, but don't rename db_table values or field names.
 
 from django.db import models
-
+import datetime
 
 class Activation(models.Model):
     user_id = models.CharField(max_length=50)
@@ -141,11 +141,16 @@ class Mail(models.Model):
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
     comment = models.TextField()
-    time = models.DateTimeField()
+    time = models.DateTimeField(      )
+    release = models.IntegerField(blank=True, null=True)
+    type = models.IntegerField(blank=True, null=True)
+    author = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'news'
+
+
 
 
 class Online(models.Model):

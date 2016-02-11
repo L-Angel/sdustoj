@@ -5,11 +5,21 @@
     <title>SDUSTOnlineJudge</title>
     <link rel="stylesheet" href="static/common/css/reset.css">
     <link rel="stylesheet" href="static/common/css/common.css">
+    <link rel="stylesheet" href="static/common/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/status.css">
      <link rel = "Shortcut Icon" href="static/img/school.png">
      <script language="javascript" src="static/js/jquery.min.js"></script>
     <script language="javascript" src="static/js/jquery.cookie.js"></script>
+        <script language="javascript" src="static/js/bootstrap.min.js"></script>
+        <script language="javascript" src="static/js/jquery.bpopup.min.js"></script>
+    <script language="javascript" src="static/common/js/notice.js"></script>
+
+        <script language="javascript" src="static/js/status.js"></script>
     <script language="javascript" src="static/js/login.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
 </head>
 <body>
 <!--headnav-->
@@ -58,11 +68,11 @@
                     <th>Submit Time</th>
                 </tr>
             </thead>
-            <tbody class="statustablebody">
+            <tbody class="statustablebody" id="statustablebody">
             {% for item in statusinfo %}
 
                 <tr>
-                    <td>{{ item.solution_id }}</td>
+                    <td class="id">{{ item.solution_id }}</td>
                     <td><a href="user?uname={{ item.user_id }}">{{ item.user_id }}</a></td>
                     <td><a href="problem?id={{ item.problem_id }}">{{ item.problem_id }}</a></td>
                     {% if item.status == 'Accepted' %}
@@ -94,7 +104,8 @@
         </nav>
     </div>
 </div>
-
+<div id="bpopup">
+</div>
 {% include 'base/footer.html' %}
 </body>
 </html>

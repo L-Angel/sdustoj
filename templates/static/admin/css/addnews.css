@@ -1,0 +1,134 @@
+/*添加文章*/
+.container{
+    padding: 20px;
+    min-width: 1000px;
+    background: #fff;
+}
+/*栏目选择*/
+.conlabel select.column {
+    border-radius: 5px;
+    color: #858585;
+    min-width: 650px;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    padding: 5px 4px;
+    line-height: 1.2;
+    font-size: 13px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+    margin-left: 20px;
+}
+
+/*tab内容区域*/
+.conlabel{
+    line-height: 40px;
+    min-width: 850px;
+    border-top: 1px solid #D5D5D5;
+}
+.conlabel span {
+    display: inline-block;
+    width: 120px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #656565;
+    border-right:1px dashed #DEDEDE;
+}
+.conlabel input[type="file"],.conlabel input[type="text"]{
+    margin-left: 20px;
+}
+
+/*添加题目*/
+.textareaLabel{
+    border-top: 1px solid #D5D5D5;
+    line-height: 140px;
+
+}
+.textareaLabel textarea {
+
+}
+
+.textareaLabel span {
+    display: inline-block;
+    width: 120px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #656565;
+    border-right: 1px dashed #DEDEDE;
+}
+
+/*评论设置 点赞设置*/
+.conlabel span.normall{
+    display: inline-block;
+    margin-left: 20px;
+    /*width: 120px;*/
+    font-size: 13px;
+    font-weight: 500;
+    color: #656565;
+}
+.conlabel span.normall input[type=checkbox]{
+    margin-left: 8px;
+}
+.conlabel  label.examine{ display:none; }
+.conlabel  label.inputinfo {
+    margin-left: 10px;
+    display: inline-block;
+}
+.conlabel input[type="text"]{
+    border-radius: 5px;
+    color: #858585;
+    min-width: 650px;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    padding: 5px 4px;
+    line-height: 1.2;
+    font-size: 13px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+}
+.conlabel input.shortinput{
+    min-width: 200px;
+}
+
+/*底部提交按钮*/
+.ownbtngroup{
+    text-align: center;
+    margin: 40px 0;
+}
+.ownbtngroup a {
+    font-size: 12px;
+    padding: 6px 18px;
+    background-color: #4090ff;
+    margin-right: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+}
+.ownbtngroup a .fa{
+    margin-right: 3px;
+}
+.ownbtngroup a:hover{
+    background-color: #136BD9;
+}
+.ownbtngroup a:nth-child(2){
+    background-color: #ec6738;
+}
+.ownbtngroup a:nth-child(2):hover{
+    background-color: #de4f1c;
+}
+.addsuccess {
+    color: #468847;
+    background-color: #dff0d8;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.2rem;
+    padding-left: 30px;
+    margin: 10px;
+    border: 1px solid #d6e9c6;
+}

@@ -8,3 +8,4 @@
 .contestbody>tr>td>a{color: #428bca;}
 .contestbody>tr>td>a:hover,.questionlittd>a:focus {  color: #2a6496; text-decoration: underline; }
 .footer{margin-top:150px;}
+.status_green{background: #DEFFD6;border: solid 1px #888888;}

@@ -3,6 +3,12 @@
  * Created by Lonely on 2015/12/31.
  */
 $(function(){
+    	$.ajaxSetup({
+  beforeSend: function(xhr, settings){
+      var csrftoken = $.cookie('csrftoken');
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  }
+});
     $username= $.cookie('uname');
     $power= $.cookie('power');
    // alert($username);
@@ -27,6 +33,7 @@ function isSpace(data){
 /**
  * Created by sun on 2015/9/29.
  */
+/*
 $(document).ready(function(){
      //随机背景图片
     var random_bg=Math.floor(Math.random()*5+1);
@@ -123,3 +130,4 @@ $(document).ready(function(){
     }
 
 });
+*/

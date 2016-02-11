@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SDUSTOJ</title>
+    <link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
+    <link rel="stylesheet" href="../static/admin/css/userlist.css"/>
+    <link rel="Shortcut Icon" href="../static/img/school.png">
+
+    <link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
+
+    <script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
+    <script src="../static/admin/common/js/jquery.session.js"></script>
+    <script src="../static/admin/common/js/base.js"></script>
+    <script language="javascript" src="../static/js/jquery.cookie.js"></script>
+    <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../static/admin/js/userlist.js"></script>
+
+</head>
+<body>
+<div class="maxwrap">
+    <!--头部-->
+    {% include 'base/adminhead.html' %}
+    <!--<script src="admin/common/js/comhead.js"></script>-->
+    <!--左边栏-->
+    <script src="../static/admin/common/js/commenu.js"></script>
+    <!--内容区域-->
+    <div class="maincontainer">
+        <!--面包屑导航-->
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class=" fa fa-home home-icon"></i><a href="#">Home</a></li>
+                <li class="breadcrumbactive">SDUSTOJ</li>
+            </ul>
+        </div>
+        <!--内容区域-->
+        <div class="container">
+            <div class="tablediv">
+                <table class="atticletable">
+                    <!--<caption class="tableheader">文章列表
+                        <span><a href="addarticle.html?moduleId=1&amp;menuName=%u4F01%u4E1A%u6587%u5316&amp;submenuName=%u6587%u5316%u6545%u4E8B" id="jumpAddUrl">添加文章</a></span>
+                    </caption>-->
+                    <thead>
+                    <tr class="trheader">
+
+                        <th>UserID</th>
+                        <th>Nick</th>
+                        <th>Solved</th>
+                        <th>Submit</th>
+                        <th>Email</th>
+                        <th>School</th>
+                        <th>RegTime</th>
+                        <th>Defunct</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    {% for item in users %}
+                        <tr>
+                            <td>{{ item.user_id }}</td>
+                            <td>{{ item.nick }}</td>
+                            <td>{{ item.solved }}</td>
+                            <td>{{ item.submit }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.school }}</td>
+                            <td>{{ item.reg_time|date:'Y-m-d H:i:s a' }}</td>
+                            {% if item.defunct == 'A' %}
+                                <td>超级管理员</td>
+                            {% elif item.defunct == 'B' %}
+                                <td>普通管理员</td>
+                            {% elif item.defunct == 'C' %}
+                                <td>普通用户</td>
+                            {% endif %}
+                            <td>
+                                <div class="ownbtngroup">
+                                    <a href="javascript:void(0)" id="edit">编辑</a><a href="javascript:void(0)"
+                                                                                    id="delete">删除</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tfoot">
+                <div class="btngroup clearfix">
+                    <!-- <i class="fa fa-trash red" id="delid"></i>
+                    <i class="fa fa-search orange"></i> -->
+                </div>
+                <div class="pagegroup">
+                    <span class="fa fa-angle-double-left" id="firstpage"></span>
+                    <span class="fa fa-angle-left" id="prepage"></span>
+
+                    <span class="fa fa-angle-right " id="nextpage"></span>
+                    <span class="fa fa-angle-double-right" id="lastpage"></span>
+                </div>
+                <div class="pageinfo">
+                    <!-- <small id="nowprenum">1</small>-<small id="nownextnum">12</small>　共<small id="allnum">12</small>条 -->
+                </div>
+            </div>
+
+            <div class="popucontainer" style="">
+                <div class="comtent">
+                    <div class="conheader">
+                        <span id="dialog_head">Edit User</span>
+                        <i class="fa fa-remove closealert closepic"></i>
+                    </div>
+                    <div class="contextarea" id="contextareaId">
+                        <div class="conlabel">
+                            <span>PassWord</span>
+                            <input type="password" id="pwd" autocomplete="off" placeholder="new password">
+                        </div>
+                        <div class="conlabel">
+                            <span>ConfirmPassWord</span>
+                            <input type="password" id="confirmpwd" autocomplete="off" placeholder="confirm password">
+                        </div>
+                        <div class="conlabel" id="privilegelabel">
+                            <span>Privilege</span>
+                            <select id="privilege">
+                                <option value="A">超级管理员</option>
+                                <option value="B">管理员</option>
+                                <option value="C">普通用户</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="btna">
+                        <a href="javascript:void(0);" class="btnleft btn " id="updataOk"> 确定</a>
+                        <a href="javascript:void(0);" class="btnright btn closealert">取消</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        // 全局变量
+
+
+        $("#nextpage").bind("click", function () {
+            window.location.href = "userlist?op=+&page_num={{ cur_page }}";
+        })
+        $("#prepage").bind("click", function () {
+            window.location.href = "userlist?op=-&page_num={{ cur_page }}";
+        })
+
+        $("#firstpage").bind("click", function () {
+            window.location.href = "userlist?page_num=1";
+        })
+        $("#lastpage").bind("click", function () {
+            window.location.href = "userlist?page_num={{ totalpage }}";
+        })
+
+    });
+</script>
+</body>
+</html>

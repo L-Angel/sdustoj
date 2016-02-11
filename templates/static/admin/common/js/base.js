@@ -24,22 +24,12 @@ $(function(){
 	
 	$("#lagoutId").bind("click",function(){
 		
-		$.ajax({ url:"login/loginOut.action",datatype:"json",type:'POST',
-            success:function(data) {
-                console.log(data);
-                if(data.errorcode == 0 ){
-                    window.location.href = 'admin/login/login.jsp';
-                   
-                    $.session.remove('username');
-                    $.session.remove('isLogin');
-                    
-                }else{
-					alert("Logout error");
-				}
-            }, error:function(e){
-                console.log(e);
+		$.post("../loginout",{},
+            function(data) {
+                window.location.href=window.location.href;
             }
-        });
+
+        );
 		return false;
 	});
 	

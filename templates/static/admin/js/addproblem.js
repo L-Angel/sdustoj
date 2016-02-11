@@ -2,6 +2,12 @@
  * Created by Lonely on 2016/1/19.
  */
    $(function(){
+       	$.ajaxSetup({
+  beforeSend: function(xhr, settings){
+      var csrftoken = $.cookie('csrftoken');
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  }
+});
         $("#submit").click(function(){
            $title=$("#title").val();
             $timelimit=$("#timelimit").val();

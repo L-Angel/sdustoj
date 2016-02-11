@@ -12,9 +12,26 @@ import config
 import os
 import re
 import datetime
+from django.core import serializers
 import  shutil
 from django.utils.timezone import utc
 __author__ = 'Lonely'
+powers=['A','B','C']
+#must not use these words!
+reserved=['null']
+
+def admin_control(request):
+    c=RequestContext(request)
+    uname=''
+    power=''
+    if 'uname' in request.COOKIES:
+        uname=request.COOKIES.get('uname')
+    if 'power' in request.COOKIES:
+        power=request.COOKIES.get('power')
+    if power == 'A' or power == 'B':
+        return HttpResponseRedirect(request.path,c)
+    else :
+        return HttpResponseRedirect('login',c)
 
 def Login(request, user=None, u="", p=""):
     c=RequestContext(request)
@@ -43,9 +60,11 @@ def Login(request, user=None, u="", p=""):
         return render_to_response('Sign/signin.html',c)
 
 def index(request):
-    return render_to_response('index/index.html')
+    c=RequestContext(request)
+    return render_to_response('index/index.html',c)
 
 def user(request):
+    c=RequestContext(request)
     userid=''
     login=False
     if 'uname' in request.GET:
@@ -54,7 +73,7 @@ def user(request):
         userid = request.COOKIES['uname']
         login=True
     user = Users.objects.filter(user_id=userid)[0]
-    problemlist=Statusinfo.objects.filter(user_id=userid).values('problem_id').distinct().order_by('problem_id')
+    problemlist=Statusinfo.objects.filter(user_id=userid,status='Accepted').values('problem_id').distinct().order_by('problem_id')
     solve = len(problemlist)
     submit=len(Statusinfo.objects.filter(user_id=userid))
     ac=len(Statusinfo.objects.filter(user_id=userid,status='Accepted'))
@@ -65,19 +84,21 @@ def user(request):
     ole=len(Statusinfo.objects.filter(user_id=userid,status='Output Limit Exceeded'))
     re=len(Statusinfo.objects.filter(user_id=userid,status='Runtime Error'))
     ce=len(Statusinfo.objects.filter(user_id=userid,status='Compiler Error'))
-    return render_to_response('user/user.html',{'user':user,'submit':submit,'ac':ac,'pe':pe,'wa':wa,'tle':tle,'mle':mle,'ole':ole,'re':re,'ce':ce,'solve':solve,'problemlist':problemlist,'login':login})
+    return render_to_response('user/user.html',{'user':user,'submit':submit,'ac':ac,'pe':pe,'wa':wa,'tle':tle,'mle':mle,'ole':ole,'re':re,'ce':ce,'solve':solve,'problemlist':problemlist,'login':login},c)
 
 
 def useredit(request):
+    c=RequestContext(request)
     userid= ''
     user=''
     if 'uname' in request.COOKIES:
         userid=request.COOKIES['uname']
         user = Users.objects.filter(user_id=userid)[0]
-    return render_to_response('user/useredit.html',{'user':user})
+    return render_to_response('user/useredit.html',{'user':user},c)
 
 
 def problem(request):
+    c=RequestContext(request)
     islogin = False
     uname=''
     if 'uname' in request.COOKIES:
@@ -87,10 +108,11 @@ def problem(request):
     pid=request.GET.get('id')
     contestid=request.GET.get('contestid')
     problem=Problem.objects.filter(problem_id=pid)
-    return render_to_response('problemset/problem.html',{'problem':problem[0],'islogin':islogin,'contestid':contestid})
+    return render_to_response('problemset/problem.html',{'problem':problem[0],'islogin':islogin,'contestid':contestid},c)
 
 
 def problemset(request):
+    c=RequestContext(request)
     page_num=1
     if 'page_num' in request.GET:
         page_num = request.GET.get('page_num')
@@ -101,7 +123,7 @@ def problemset(request):
         page=[1]
     problemlist=p.page(page_num).object_list
     cur_page=page_num
-    return render_to_response('problemset/problemset.html',{'problemlist':problemlist,'page':page,'cur_page':cur_page})
+    return render_to_response('problemset/problemset.html',{'problemlist':problemlist,'page':page,'cur_page':cur_page},c)
 
 
 def submit(request):
@@ -113,15 +135,18 @@ def submit(request):
 
 
 def faq(request):
-    return render_to_response('FAQ/faq.html')
+    c=RequestContext(request)
+    return render_to_response('FAQ/faq.html',c)
 
 
 def about(request):
-    return render_to_response('Other/about.html')
+    c=RequestContext(request)
+    return render_to_response('Other/about.html',c)
 
 
 def sign(request):
-    return render_to_response('Sign/sign.html')
+    c=RequestContext(request)
+    return render_to_response('Sign/sign.html',c)
 
 
 def signup(request):
@@ -155,7 +180,9 @@ def signin(request):
     return render_to_response('Sign/signin.html',c)
 
 def status(request):
+    c=RequestContext(request)
     page_num = 1
+    contest_id=-1
     if 'page_num' in request.GET:
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
@@ -164,17 +191,22 @@ def status(request):
             page_num = page_num +1
         if '-' in str(op) and page_num > 1:
             page_num = page_num - 1
-    statusinfo = Statusinfo.objects.all().order_by('-solution_id')
+    if 'c_id' in request.GET:
+        contest_id=request.GET.get('c_id')
+        statusinfo=Statusinfo.objects.filter(contest_id=contest_id).order_by('-solution_id')
+    else:
+        statusinfo = Statusinfo.objects.all().order_by('-solution_id')
     p=Paginator(statusinfo,config.page_count)
     statusinfo=p.page(page_num).object_list
     page = p.page_range
     if len(page) >= 1:
         if page_num != page[-1]:
            page_num = page[-1]
-    return render_to_response('Status/status.html',{'statusinfo':statusinfo,'cur_page':page_num})
+    return render_to_response('Status/status.html',{'statusinfo':statusinfo,'cur_page':page_num},c)
 
 
 def contest(request):
+    c=RequestContext(request)
     uname=''
     power=''
     if 'uname' in request.COOKIES:
@@ -182,32 +214,61 @@ def contest(request):
     if 'uname' in request.COOKIES:
         power=request.COOKIES.get('power')
     contestid = request.GET.get('id')
-    problem_list = ContestProblem.objects.filter(contest_id=contestid).order_by('problem_id')
+    problem_list = ContestProblem.objects.filter(contest_id=contestid).order_by('problem_id').values('contest_id','id','problem_id','title','num')
+    for item in problem_list:
+        print item
+        status=Statusinfo.objects.filter(user_id=uname,problem_id=item['problem_id'],contest_id=item['contest_id'])
+        if len(status) > 0:
+            item['status']='Y'
+        else :
+            item['status']='N'
     contest = Contestinfo.objects.get(contest_id=contestid)
     cur_time=time.strftime('%Y-%m-%d %H:%M %p',time.localtime())
     if contest.privilege=='Private' and power != 'A':
         users=ContestUsers.objects.filter(contest_id=contestid,user_id=uname)
         if len(users) <= 0:
-            return render_to_response('error/errorinfo.html',{'error':'contestprivilegeerror'})
-    return render_to_response('contest/contest.html',{'problemlist':problem_list,'contest':contest,'cur_time':cur_time})
+            return render_to_response('error/errorinfo.html',{'error':'contestprivilegeerror'},c)
+    c_time=int(time.mktime(time.localtime()))
+    s_time=int(time.mktime(contest.start_time.timetuple()))
+    e_time=int(time.mktime(contest.end_time.timetuple()))
+    if c_time < s_time:
+        return render_to_response('error/errorinfo.html',{'error':'conteststarterror'},c)
+    if c_time > e_time:
+        return render_to_response('error/errorinfo.html',{'error':'contestfinisherror'},c)
+
+    return render_to_response('contest/contest.html',{'problemlist':problem_list,'contest':contest,'cur_time':cur_time},c)
 
 
 def contestlist(request):
+    c=RequestContext(request)
     page_num = 1
     if 'page_num' in request.GET:
         page_num = request.GET.get('page_num')
         if page_num <= 0:
             page_num = 1
-    contestlist=Contestinfo.objects.all().order_by('-contest_id')
+    contestlist=Contestinfo.objects.all().order_by('-contest_id').values('contest_id','title','start_time','end_time','defunct','points','privilege','language')
+    for item in contestlist:
+        cur_time=int(time.mktime(time.localtime()))
+        s_time=int(time.mktime(item['start_time'].timetuple()))
+        e_time=int(time.mktime(item['end_time'].timetuple()))
+        if cur_time < s_time :
+            status = 'Wating...'
+        elif cur_time > e_time:
+            status='Finished'
+        elif cur_time >= s_time and cur_time <= e_time:
+            status = 'Running'
+        item['status']=status
     p=Paginator(contestlist,config.page_count)
     contestlist=p.page(page_num).object_list
     page=p.page_range
     if len(page) <= 0:
         page = [1]
-    return render_to_response('contest/contestlist.html',{'contestlist':contestlist,'page':page,'cur_page':page_num})
+    print cur_time,s_time,e_time,contestlist[0]['status']
+    return render_to_response('contest/contestlist.html',{'contestlist':contestlist,'page':page,'cur_page':page_num},c)
 
 
 def ranklist(request):
+    c=RequestContext(request)
     page_num = 1
     if 'page_num' in request.GET:
         page_num = int(request.GET.get('page_num'))
@@ -238,13 +299,14 @@ def ranklist(request):
     if len(page) >= 1:
         if page_num != page[-1]:
             page_num = page[-1]
-    return render_to_response('ranklist/ranklist.html',{'users':users,'cur_page':page_num})
+    return render_to_response('ranklist/ranklist.html',{'users':users,'cur_page':page_num},c)
 
 def webboard(request):
     return render_to_response('webboard/webboard.html')
 
 def admin(request):
-    return render_to_response('admin/admin.html')
+    c=RequestContext(request)
+    return render_to_response('admin/admin.html',c)
 
 
 def sub_source(request):
@@ -271,14 +333,14 @@ def sub_source(request):
     user=Users.objects.get(user_id=username)
     user.submit=user.submit+1
     user.save()
-    return HttpResponseRedirect('status',c)
+    return HttpResponseRedirect('status?c_id='+contestid,c)
 
 def admin_login(request):
     c=RequestContext(request)
     return render_to_response("admin/login.html",c)
 
-@csrf_exempt
-def admin_login_deal(request,user=None):
+
+def admin_login_deal(request):
     c=RequestContext(request)
     user_name=''
     pwd=''
@@ -292,17 +354,18 @@ def admin_login_deal(request,user=None):
             if str(user.password) == pwd:
                 if user.defunct != 'C':
                     response=HttpResponseRedirect('index',c)
-                    response.set_cookie('username',user_name,3600)
+                    response.set_cookie('uname',user_name,3600)
                     response.set_cookie('power',user.defunct,3600)
                     return response
                 else :
-                    return render_to_response('admin/login.html',{'user_error',True},c)
+                    return render_to_response('admin/login.html',{'user_error':True},c)
             else:
-                return render_to_response('admin/login.html',{'pwd_error',True},c)
-        except:
-            return render_to_response('admin/login.html',{'user_error',True},c)
+                return render_to_response('admin/login.html',{'pwd_error':True},c)
+        except Exception,e:
+            print e
+            return render_to_response('admin/login.html',{'user_error':True},c)
     else:
-        return render_to_response('admin/login.html',{'user_error',True},c)
+        return render_to_response('admin/login.html',{'user_error':True},c)
 
 def admin_index(request):
     return render_to_response('admin/index.html')
@@ -310,8 +373,9 @@ def admin_index(request):
 def admin_addproblem(request):
     return render_to_response('admin/addproblem.html')
 
-@csrf_exempt
+
 def admin_addproblem_save(request):
+    c=RequestContext(request)
     title=request.POST.get('title')
     timelimit=request.POST.get('timelimit')
     memlimit=request.POST.get('memlimit')
@@ -326,12 +390,8 @@ def admin_addproblem_save(request):
         problem.save()
 
     except:
-        return HttpResponse("failure")
-    return HttpResponse("success")
-
-@csrf_exempt
-def admin_addcontest_save(request):
-    return HttpResponse("success")
+        return HttpResponse("failure",c)
+    return HttpResponse("success",c)
 
 
 def admin_addcontest(request):
@@ -339,8 +399,9 @@ def admin_addcontest(request):
     privilege=ContestPrivilege.objects.all();
     return render_to_response("admin/addcontest.html",{'language':language,'privilege':privilege})
 
-@csrf_exempt
+
 def admin_addcontest_save(request):
+    c=RequestContext(request)
     flag=True
     title=request.POST.get('title')
     starttime=request.POST.get('starttime')
@@ -372,17 +433,19 @@ def admin_addcontest_save(request):
             print e
             flag=False
     if flag==True:
-        return HttpResponse("success")
-    return HttpResponse("error")
+        return HttpResponse("success",c)
+    return HttpResponse("error",c)
 
 def compileerror(request):
+    c=RequestContext(request)
     solution_id=''
     if 'solution_id' in request.GET:
         solution_id=request.GET.get('solution_id')
     compileinfo = Compileinfo.objects.get(solution_id=solution_id)
-    return render_to_response('error/errorinfo.html',{'error':'compileerror','compileerror':compileinfo.error})
+    return render_to_response('error/errorinfo.html',{'error':'compileerror','compileerror':compileinfo.error},c)
 
 def admin_problemlist(request):
+    c=RequestContext(request)
     page_num = 1
     if 'page_num' in request.GET:
         page_num = int(request.GET.get('page_num'))
@@ -401,7 +464,7 @@ def admin_problemlist(request):
     if len(page) >= 1:
         if page_num != page[-1]:
             page_num = page[-1]
-    return render_to_response('admin/problemlist.html',{'problems':problems,'cur_page':page_num,'totalpage':page[-1]})
+    return render_to_response('admin/problemlist.html',{'problems':problems,'cur_page':page_num,'totalpage':page[-1]},c)
 
 
 def admin_addproblemfile(request):
@@ -436,8 +499,9 @@ def admin_addproblemfile_save(request):
             return render_to_response('admin/addproblemfile.html',{'result':'failure'},c)
     return render_to_response('admin/addproblemfile.html',{'result':'failure'},c)
 
-@csrf_exempt
+
 def admin_contestlist(request):
+    c=RequestContext(request)
     page_num = 1
     if 'page_num' in request.GET:
         page_num = int(request.GET.get('page_num'))
@@ -456,11 +520,211 @@ def admin_contestlist(request):
     if len(page) >= 1:
         if page_num != page[-1]:
             page_num = page[-1]
-    return render_to_response('admin/admin_contestlist.html',{'contests':contests,'cur_page':page_num,'totalpage':page[-1]})
+    return render_to_response('admin/admin_contestlist.html',{'contests':contests,'cur_page':page_num,'totalpage':page[-1]},c)
 
+def admin_newslist(request):
+    c=RequestContext(request)
+    page_num = 1
+    if 'page_num' in request.GET:
+        page_num = int(request.GET.get('page_num'))
+    if 'op' in request.GET:
+        op=request.GET.get('op')
+        if '+' in str(op):
+            page_num = page_num +1
+        if '-' in str(op) and page_num > 1:
+            page_num = page_num - 1
+    news=News.objects.all().order_by('-news_id')
+    p=Paginator(news,config.admin_page_cuont)
+    news=p.page(page_num).object_list
+    page = p.page_range
+    if len(page) <=0:
+        page = [1]
+    if len(page) >= 1:
+        if page_num != page[-1]:
+            page_num = page[-1]
+    return render_to_response('admin/newslist.html',{'news':news,'cur_page':page_num,'totalpage':page[-1]},c)
+
+def admin_adduser(request):
+    return render_to_response('admin/adduser.html')
+
+def admin_addnews(request):
+    c=RequestContext(request)
+    return render_to_response('admin/addnews.html',c)
+
+def admin_dealnews(request):
+    c=RequestContext(request)
+    op=request.POST.get('op')
+    news_id=request.POST.get('news_id')
+    if op == 'del':
+        try:
+            news=News.objects.get(news_id=news_id)
+            news.delete()
+        except Exception,e:
+            print e
+            return HttpResponse('failure',c)
+    if op == 'release':
+        release=request.POST.get('release')
+        try:
+            news = News.objects.get(news_id=news_id)
+            news.release=int(release)
+            news.save()
+        except Exception,e:
+            print e
+            return HttpResponse('failure',c)
+    return HttpResponse('success',c)
+
+
+
+def admin_addnews_save(request):
+    c=RequestContext(request)
+    type=''
+    release=''
+    content=''
+    author=''
+    if 'type' in request.POST:
+        type=request.POST.get('type')
+    if 'type' in request.POST:
+        release=request.POST.get('release')
+    if 'type' in request.POST:
+        content=request.POST.get('content')
+    if 'uname' in request.COOKIES:
+        author = request.COOKIES.get('uname')
+    try:
+        news = News(type=type,release=release,comment=content,author=author,time=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))
+        news.save()
+        return HttpResponse('success',c)
+    except Exception,e:
+        return HttpResponse('failure',c)
+
+def admin_getnews(request):
+    c=RequestContext(request)
+    type=request.POST.get('type')
+    if int(type) == 0:
+        news = News.objects.filter(type=0,release=1)
+        str="["
+        for item in news:
+            str+='{\"content\":\"'+item.comment+'\"},'
+        if len(str) <=1:
+            str=str+']'
+        else:
+            str=str[0:-1]+']'
+        return HttpResponse(str,c)
+    if int(type) == 1:
+        news = News.objects.filter(type=1,release=1)
+        str="["
+        for item in news:
+            str+='{\"content\":\"'+item.comment+'\"},'
+
+        if len(str) <=1:
+            str=str+']'
+        else:
+            str=str[0:-1]+']'
+        return HttpResponse(str,c)
+
+def admin_userlist(request):
+    c=RequestContext(request)
+    page_num = 1
+    if 'page_num' in request.GET:
+        page_num = int(request.GET.get('page_num'))
+    if 'op' in request.GET:
+        op=request.GET.get('op')
+        if '+' in str(op):
+            page_num = page_num +1
+        if '-' in str(op) and page_num > 1:
+            page_num = page_num - 1
+    users=Users.objects.all().order_by('user_id')
+    p=Paginator(users,config.admin_page_cuont)
+    users=p.page(page_num).object_list
+    page = p.page_range
+    if len(page) <=0:
+        page = [1]
+    if len(page) >= 1:
+        if page_num != page[-1]:
+            page_num = page[-1]
+    return render_to_response('admin/userlist.html',{'users':users,'cur_page':page_num,'totalpage':page[-1]},c)
+
+#---------------
 def loginout(request):
     response=HttpResponseRedirect('index')
     response.delete_cookie("uname",path="/")
+    response.delete_cookie("username",path="/")
     response.delete_cookie("power",path="/")
     return response
+
+#-------------JSON
+
+def getcodeinfo(request):
+    c=RequestContext(request)
+    solution_id=-1
+    if 's_id' in request.POST:
+        solution_id=request.POST.get('s_id')
+    try:
+        code=SourceCode.objects.get(solution_id=int(solution_id))
+        code=str(code.source)
+        code=re.sub("[\\\]",'\\\\',code)
+        code=re.sub('\"','\\"',code)
+        code=re.sub('[<]','&lt;',code)
+        code=re.sub('[>]','&gt;',code)
+        code=re.sub('[\r\n]','<p>',code)
+        json_data='{\"source\":\"'+code+'\"}';
+        return HttpResponse(json_data,c)
+    except Exception,e:
+        print e
+        solution_id=-1
+        return HttpResponse("{}",c)
+
+
+def admin_deal_data(request):
+    c=RequestContext(request)
+    type=request.POST.get('type')
+    if type == 'problem':
+        try:
+            problem_id=request.POST.get('p_id')
+            ppath=config.data_dir+"/"+problem_id
+            if os.path.exists(ppath):
+                shutil.rmtree(ppath)
+            problem=Problem.objects.get(problem_id=problem_id)
+            problem.delete()
+        except Exception,e:
+            print e
+            return HttpResponse("{\"result\":\"failure\"}",c)
+    elif type == 'contest':
+        try:
+            contest_id=request.POST.get('c_id')
+            contest=Contest.objects.get(contest_id=contest_id)
+            contest.delete()
+            print 'c_id',contest_id
+        except Exception,e:
+            print e
+            return HttpResponse("{\"result\":\"failure\"}",c)
+    elif type == 'user':
+        try:
+            user_id=request.POST.get('u_id')
+            user=Users.objects.get(user_id=user_id)
+            user.delete()
+        except Exception,e:
+            print e
+            return HttpResponse("{\"result\":\"failure\"}",c)
+    print 'deal data : success'
+    return HttpResponse("{\"result\":\"success\"}",c)
+
+def admin_dealuser(request):
+    c=RequestContext(request)
+    pwd=request.POST.get('pwd')
+    uname=request.POST.get('uname')
+    power=request.POST.get('power')
+    print "username:",uname,"password:",pwd,"defunct:",power
+    try:
+        user=Users.objects.get(user_id=uname)
+        if pwd not in reserved:
+            user.password=pwd
+        if power in powers:
+            user.defunct=power
+        user.save()
+    except Exception,e:
+        print e
+        return HttpResponse("{\"result\":\"failure\"}",c)
+    return HttpResponse("{\"result\":\"success\"}",c)
+
+
 

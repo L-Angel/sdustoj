@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="static/common/css/reset.css">
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/contestlist.css">
-    <link rel = "Shortcut Icon" href="static/img/school.png">
+    <link rel="Shortcut Icon" href="static/img/school.png">
     <script language="javascript" src="static/js/jquery.min.js"></script>
     <script language="javascript" src="static/js/jquery.cookie.js"></script>
     <script language="javascript" src="static/js/login.js"></script>
+    <script language="javascript" src="static/common/js/notice.js"></script>
+
 </head>
 <body>
 <!--headnav-->
@@ -18,13 +20,13 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-               <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
-                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
-                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
-                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
-                <li class="headnavli"> <a href="contestlist" class="headnavtitle  headnavtitleactive">Contest</a></li>
-                <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
+                <li class="headnavli"><a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
+                <li class="headnavli"><a href="webboard" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"><a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"><a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"><a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"><a href="contestlist" class="headnavtitle  headnavtitleactive">Contest</a></li>
+                <li class="headnavli"><a href="faq" class="headnavtitle">F.A.Qs</a></li>
             </ul>
             <div class="headnavactions">
                 <a href="signup" class="headnavtitle">Sign up</a>
@@ -49,6 +51,7 @@
             <tr class="questionlittr">
                 <th class="questionlitth">ID</th>
                 <th class="questionlitth">Title</th>
+                <th class="questionlitth">Status</th>
                 <th class="questionlitth">Start Time</th>
                 <th class="questionlitth">End Time</th>
                 <th class="questionlitth">Type</th>
@@ -56,22 +59,21 @@
             </thead>
             <tbody>
             {% for item in contestlist %}
-            <tr class="questionlittr">
-                <td class="questionlittd">{{ item.contest_id }}</td>
-                <td class="questionlittd"><a href="contest?id={{ item.contest_id }}">{{ item.title }}</a></td>
-                <td class="questionlittd">{{ item.start_time | date:"Y-m-d H:i:s a" }}</td>
-                <td class="questionlittd">{{ item.end_time| date:"Y-m-d H:i:s a"  }}</td>
-                <td class="questionlittd">{{ item.privilege }}</td>
-            </tr>
+                <tr class="questionlittr">
+                    <td class="questionlittd">{{ item.contest_id }}</td>
+                    <td class="questionlittd"><a href="contest?id={{ item.contest_id }}">{{ item.title }}</a></td>
+                    <td class="questionlittd {% if item.status == 'Wating...' %} gray{% elif item.status == 'Running' %} green{% elif item.status == 'Finished' %} red{% endif %}">{{ item.status }}</td>
+                    <td class="questionlittd">{{ item.start_time | date:"Y-m-d H:i:s a" }}</td>
+                    <td class="questionlittd">{{ item.end_time| date:"Y-m-d H:i:s a" }}</td>
+                    <td class="questionlittd">{{ item.privilege }}</td>
+                </tr>
             {% endfor %}
-
-
-
             </tbody>
         </table>
         <ul class="pagination">
             {% for item in page %}
-                <li class="{% if item == cur_page %} active {% endif %}paginationli"><a href="contestlist?page_num={{ item }}">{{ item }}</a></li>
+                <li class="{% if item == cur_page %} active {% endif %}paginationli"><a
+                        href="contestlist?page_num={{ item }}">{{ item }}</a></li>
             {% endfor %}
 
         </ul>

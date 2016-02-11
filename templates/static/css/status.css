@@ -13,3 +13,6 @@
 .pagination>a{ padding: 5px 14px;  background-color: #fff;  border: 1px solid #dedede;  /*border-radius: 15px;*/color: #428bca; font-size: 14px;    display: inline-block; width: 60px; text-align: center;}
 .pagination>a:hover,.pagination>a:active{color: #2a6496;  background-color: #eee;}
 .pagination>a.nextpage{float: right;}
+#bpopup{display: none;}
+.info{color: green;}
+.info>p{height:10px;font-weight: 800}

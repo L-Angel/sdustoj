@@ -12,6 +12,7 @@
     	<link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
     <!--forala-->
     <script src="../static/common/js/jquery-2.0.3.min.js"></script>
+      <script language="javascript" src="../static/js/jquery.cookie.js"></script>
 <script src="../static/common/js/jquery.session.js"></script>
 <script src="../static/common/js/base.js"></script>
   <script src="../static/common/editor/js/froala_editor.min.js"></script>
@@ -29,10 +30,7 @@
 
   <script src="../static/admin/js/addproblem.js" type="text/javascript" charset="utf-8"></script>
     <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
-    <!-- fileupload -->
-    <script src="../static/js/jquery.fileupload-ui.js"></script>
-    <script src="../static/js/jquery.fileupload.js"></script>
-    <script src="../static/js/jquery.iframe-transport.js"></script>
+
 </head>
 <body>
 <div class="maxwrap">
@@ -70,7 +68,7 @@
                     </div>
                     <div class="conlabel">
                         <span>Memory Limit</span>
-                        <input type="text" id="memlimit" class="shortinput"autocomplete="off" value="12800">MByte
+                        <input type="text" id="memlimit" class="shortinput"autocomplete="off" value="65535">MByte
                     </div>
                     <div class="conlabel">
                         <span>Description</span>

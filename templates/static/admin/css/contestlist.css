@@ -90,24 +90,32 @@ table .trheader{
     border-left: 1px solid #e1e1e1;
 }
 table tr th:nth-child(1),table tr td:nth-child(1){
-    width: 20px;
+    width: 5%;
 }
 table tr th:nth-child(2),table tr td:nth-child(2){
-     width: 50%;
+     width: 20%;
  }
 table tr th:nth-child(3),table tr td:nth-child(3){
-    width: 15%;
+    width: 18%;
 }
 table tr th:nth-child(4),table tr td:nth-child(4){
-    width: 15%;
+    width: 18%;
 }
 table tr th:nth-child(5),table tr td:nth-child(5){
-    width: 10%;
+    width: 7%;
 }
 table tr th:nth-child(6),table tr td:nth-child(6){
-    width: 10%;
+    width: 7%;
 }
-
+table tr th:nth-child(7),table tr td:nth-child(7){
+    width: 5%;
+}
+table tr th:nth-child(8),table tr td:nth-child(8){
+    width: 5%;
+}
+table tr th:nth-child(9),table tr td:nth-child(9){
+    width: 15%;
+}
 table tr td,table tr th{
     text-indent: 0px;
 }
@@ -339,4 +347,53 @@ a.btnleft {
 a.btnright {
     float: right;
     margin-right: 10px;
+}
+/*按钮*/
+.ownbtngroup{
+    text-align: center;
+    margin: 0px 0;
+}
+.ownbtngroup a {
+    font-size: 12px;
+    padding: 6px 18px;
+    background-color: #4090ff;
+    margin-right: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+}
+.ownbtngroup a .fa{
+    margin-right: 3px;
+}
+.ownbtngroup a:hover{
+    background-color: #136BD9;
+}
+.ownbtngroup a:nth-child(2){
+    background-color: #ec6738;
+}
+.ownbtngroup a:nth-child(2):hover{
+    background-color: #de4f1c;
+}
+.addsuccess {
+    color: #468847;
+    background-color: #dff0d8;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.2rem;
+    padding-left: 30px;
+    margin: 10px;
+    border: 1px solid #d6e9c6;
+}
+.red{
+    color:red;
+    background: black;
+}
+.green{
+    color:green;
+}
+.gray{
+    color:grey;
 }

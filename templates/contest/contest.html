@@ -11,6 +11,8 @@
      <script language="javascript" src="static/js/jquery.min.js"></script>
     <script language="javascript" src="static/js/jquery.cookie.js"></script>
     <script language="javascript" src="static/js/login.js"></script>
+        <script language="javascript" src="static/common/js/notice.js"></script>
+
 </head>
 <body>
 <!--headnav-->
@@ -61,7 +63,7 @@
             </thead>
             <tbody class="contestbody">
             {% for item in problemlist %}
-            <tr>
+            <tr {% if item.status == 'Y' %} class="status_green" {% endif %}>
                 <td>{{ item.problem_id }}</td>
                 <td><a href="problem?id={{ item.problem_id }}&contestid={{ contest.contest_id }}">{{ item.title }}</a></td>
             </tr>
