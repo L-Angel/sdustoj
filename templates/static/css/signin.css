@@ -10,3 +10,5 @@
 .singinbody>a.btn{ display: inline-block; color: #428bca; padding: 6px 8px;border-radius: 6px; background-color: #F1F1F1; border:1px solid #ccc; color: #333; }
 .singinbody>a.btn:hover{ background-color: #EBEBEB; }
 .singinbody a.forgetpwd{ color: #4078c0; text-decoration: none; }
+.red{color:red;}
+.center{margin-top:10px;margin-left: 150px;}

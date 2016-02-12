@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/common/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/status.css">
-     <link rel = "Shortcut Icon" href="static/img/school.png">
-     <script language="javascript" src="static/js/jquery.min.js"></script>
+    <link rel="Shortcut Icon" href="static/img/school.png">
+    <script language="javascript" src="static/js/jquery.min.js"></script>
     <script language="javascript" src="static/js/jquery.cookie.js"></script>
-        <script language="javascript" src="static/js/bootstrap.min.js"></script>
-        <script language="javascript" src="static/js/jquery.bpopup.min.js"></script>
+    <script language="javascript" src="static/js/bootstrap.min.js"></script>
+    <script language="javascript" src="static/js/jquery.bpopup.min.js"></script>
     <script language="javascript" src="static/common/js/notice.js"></script>
 
-        <script language="javascript" src="static/js/status.js"></script>
+    <script language="javascript" src="static/js/status.js"></script>
     <script language="javascript" src="static/js/login.js"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">
-<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
@@ -28,13 +28,13 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-            <li class="headnavli"> <a href="/" class="headnavtitle">Home</a></li>
-                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
-                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
-                <li class="headnavli"> <a href="status" class="headnavtitle  headnavtitleactive">Status</a></li>
-                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
-                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
-                <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
+                <li class="headnavli"><a href="/" class="headnavtitle">Home</a></li>
+                <li class="headnavli"><a href="webboard" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"><a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"><a href="status" class="headnavtitle  headnavtitleactive">Status</a></li>
+                <li class="headnavli"><a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"><a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"><a href="faq" class="headnavtitle">F.A.Qs</a></li>
             </ul>
             <div class="headnavactions">
                 <a href="signup" class="headnavtitle">Sign up</a>
@@ -56,17 +56,20 @@
     <div class="common_Container">
         <table class="statustable">
             <thead class="statustablehead">
-                <tr>
-                    <th>RunID</th>
-                    <th>User</th>
-                    <th>Problem</th>
-                    <th>Result</th>
-                    <th>Memory	</th>
-                    <th>Time</th>
-                    <th>Language</th>
-                    <th>Code Length</th>
-                    <th>Submit Time</th>
-                </tr>
+            <tr>
+                <th>RunID</th>
+                <th>User</th>
+                <th>Problem</th>
+                {% if ifcontest == 'True' %}
+                    <th>NUM</th>
+                {% endif %}
+                <th>Result</th>
+                <th>Memory</th>
+                <th>Time</th>
+                <th>Language</th>
+                <th>Code Length</th>
+                <th>Submit Time</th>
+            </tr>
             </thead>
             <tbody class="statustablebody" id="statustablebody">
             {% for item in statusinfo %}
@@ -75,24 +78,30 @@
                     <td class="id">{{ item.solution_id }}</td>
                     <td><a href="user?uname={{ item.user_id }}">{{ item.user_id }}</a></td>
                     <td><a href="problem?id={{ item.problem_id }}">{{ item.problem_id }}</a></td>
+                    {% if ifcontest == 'True' %}
+                        <td>
+                            <a href="problem?id={{ item.problem_id }}&contestid={{ item.contest_id }}">{{ item.problem_num }}</a>
+                        </td>
+                    {% endif %}
                     {% if item.status == 'Accepted' %}
-                         <td class="green">{{ item.status }}</td>
+                        <td class="green">{{ item.status }}</td>
                     {% elif item.status == 'Compile Error' %}
-                        <td><a class='compilered' href="compileerror?solution_id={{ item.solution_id }}">{{ item.status }}</a></td>
-                    {% else  %}
-                         <td class="red">{{ item.status }}</td>
+                        <td><a class='compilered'
+                               href="compileerror?solution_id={{ item.solution_id }}">{{ item.status }}</a></td>
+                    {% else %}
+                        <td class="red">{{ item.status }}</td>
                     {% endif %}
                     {% if item.status == 'Judging' or item.status == 'Pending' or item.status == 'System Error' %}
-                    <td>--</td>
-                    <td>--ms</td>
+                        <td>--</td>
+                        <td>--ms</td>
                     {% else %}
-                     <td>{{ item.memory }}KB</td>
-                    <td>{{ item.time }}MS</td>
+                        <td>{{ item.memory }}KB</td>
+                        <td>{{ item.time }}MS</td>
                     {% endif %}
 
                     <td>{{ item.language_name }}</td>
                     <td>{{ item.code_length }}B</td>
-                    <td>{{ item.in_date | date:"Y-m-d H:i:s a"}}</td>
+                    <td>{{ item.in_date | date:"Y-m-d H:i:s a" }}</td>
                 </tr>
             {% endfor %}
 

@@ -9,10 +9,11 @@
 .statustablebody>tr>td.green{color: green;}
 .statustablebody>tr>td.navy{color: navy;}
 /*页码*/
-.pagination{margin: 20px auto;width: 60%;}
-.pagination>a{ padding: 5px 14px;  background-color: #fff;  border: 1px solid #dedede;  /*border-radius: 15px;*/color: #428bca; font-size: 14px;    display: inline-block; width: 60px; text-align: center;}
+.pagination{margin: 20px 15%;width: 60%;}
+.pagination>a{ white-space:nowrap;padding: 5px 14px; padding-right: 14px; background-color: #fff;  border: 1px solid #dedede;  /*border-radius: 15px;*/color: #428bca; font-size: 14px;    display: inline-block; width: 80px; text-align: center;}
 .pagination>a:hover,.pagination>a:active{color: #2a6496;  background-color: #eee;}
 .pagination>a.nextpage{float: right;}
+
 #bpopup{display: none;}
 .info{color: green;}
 .info>p{height:10px;font-weight: 800}

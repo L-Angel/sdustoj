@@ -1,0 +1,22 @@
+/**
+ * Created by Rick on 16/2/12.
+ */
+.background_red{
+    background: palevioletred;
+}
+.background_green{
+    background:palegreen;
+}
+.background_blue{
+    background: #b5d6fd;
+}
+.boardtable{width: inherit; margin: 15px auto;}
+.boardtablehead>tr>th{padding: 8px;padding-left:40px;padding-right:40px;border-bottom: 2px solid #ddd;font-weight: 600;font-size: 16px;}
+.boardtablebody>tr:nth-child(odd) { background-color: #F7F7F7;  }
+.boardtablebody>tr>td{padding: 8px; border-bottom: 1px solid #E6E6E6; text-align: center;border-left: 1px solid #E6E6E6;}
+.boardtablebody>tr>td>a{color: #428bca;}
+.boardtablebody>tr>td>a:hover,.questionlittd>a:focus {  color: #2a6496; text-decoration: underline; }
+.boardtablebody>tr>td.red{color: red;}
+.boardtablebody>tr>td>a.compilered{color: red;}
+.boardtablebody>tr>td.green{color: green;}
+.boardtablebody>tr>td.navy{color: navy;}

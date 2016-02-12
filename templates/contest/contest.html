@@ -48,6 +48,7 @@
 <div class="container">
     <div class="common_Container">
         <h1 class="contesttitle">{{ contest.title }}</h1>
+        <h3><a href="status?c_id={{ contest.contest_id }}">Status</a><a href="board?c_id={{ contest.contest_id }}">Board</a></h3>
         <div class="contestinfo">
             <span class="green">From: </span>{{ contest.start_time | date:"Y-m-d H:i:s a" }}&nbsp;&nbsp;
             <span class="green">To:</span>{{ contest.end_time| date:"Y-m-d H:i:s a"  }}&nbsp;&nbsp;
@@ -58,6 +59,7 @@
             <thead class="contesthead">
             <tr>
                 <th>ID</th>
+                <th>NUMBER</th>
                 <th>Title</th>
             </tr>
             </thead>
@@ -65,6 +67,7 @@
             {% for item in problemlist %}
             <tr {% if item.status == 'Y' %} class="status_green" {% endif %}>
                 <td>{{ item.problem_id }}</td>
+                <td>{{ item.num }}</td>
                 <td><a href="problem?id={{ item.problem_id }}&contestid={{ contest.contest_id }}">{{ item.title }}</a></td>
             </tr>
            {% endfor %}

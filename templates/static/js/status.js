@@ -9,6 +9,7 @@ $(function(){
   }
 });
 
+
     $("tr").click(function(){
         $uname= $.cookie("uname");
         $power= $.cookie("power");
@@ -34,7 +35,7 @@ $(function(){
             "<p>Code_Length : " +$codelen+
             "<p>Submit_Time : " +$subtime+
             "<p>*/</div>div>"
-        if($uname==$user_id){
+        if($uname==$user_id||$power=='A'||$power=='B'){
             $.post("getcodeinfo",
                 {s_id:$sol_id},
                 function(data,textStatus){

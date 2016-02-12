@@ -1,3 +1,11 @@
 .container{height: 1000px;}
 .content{margin:10px 5% 5%;padding-top: 0px;}
 .info-content{ background: #F5F5F5; border: 1px solid #e3e3e3; padding: 10px; color: #333; border-radius: 4px; font-size: 14px; line-height: 1.5; }
+h1{font-size: small}
+h2{font-size: medium;}
+h3{font-size: large;}
+h4{font-size: larger;}
+h5{font-size: x-large;}
+h6{font-size: xx-large;}
+strong{font-weight: 800;}
+
