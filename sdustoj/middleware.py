@@ -3,7 +3,7 @@ from urllib import quote
 import re
 class QtsAuthenticationMiddleware(object):
     def process_request(self,request):
-        if request.path!='/admin/login' and request.path != '/admin/admin_login_deal' and request.path.count('/') == 2:
+        if request.path!='/admin/login' and request.path != '/admin/admin_login_deal' and request.path.find('/admin/') >= 0:
             power=''
             if 'power' in request.COOKIES:
                 power = request.COOKIES.get('power')
