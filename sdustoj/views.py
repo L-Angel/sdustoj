@@ -614,7 +614,7 @@ def admin_addcontest_save(request):
                 private=int(contest_private), langmask=int(language))
     c.save()
     contestid = c.contest_id
-    index=1
+    index=0
     for problem in re.split(';|,', str(problems)):
         try:
             if problem != '':
