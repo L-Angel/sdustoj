@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="../static/admin/common/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../static/admin/common/css/base.css"/>
     <link rel="Shortcut Icon" href="../static/img/school.png">
-    <link rel="stylesheet" href="../static/admin/css/adduser.css"/>
+    <link rel="stylesheet" href="../static/admin/css/rejudge.css"/>
     <script src="../static/admin/common/js/jquery-2.0.3.min.js"></script>
     <script language="javascript" src="../static/js/jquery.cookie.js"></script>
     <script src="../static/admin/common/js/jquery.session.js"></script>
     <script src="../static/admin/common/js/base.js"></script>
-    <script src="../static/admin/js/adduser.js"></script>
+    <script src="../static/admin/js/rejudge.js"></script>
     <script src="../static/common/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="../static/common/css/xcConfirm.css"/>
 
@@ -38,24 +38,23 @@
         <div class="container">
             <div class="tablediv">
                 <div class="title">
-                    上传用户文件
+                    Rejudge (From solution_id-----To solution_id)
                 </div>
                 <div class="fileupload">
-                    <form action="adduserfile" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <form action="rejudge_save" method="post" enctype="multipart/form-data">{% csrf_token %}
                         <!--<table>
                         <tr><td><span class="problemtitle leftspan">题目编号</span><input type="text" id="problem_id" name="problem_id"/></td></tr>
                         <tr><td><span class="problemfile leftspan">题目文件</span><input type="file" multiple="multiple" id="files" name="files"/></td></tr>
                         <tr><td><input type="submit" id="submit" name="submit"/></td></tr>
                         </table>-->
                         <div class="fileuploadcon">
-                            <span class="leftspan">说明</span>
-                           上传文件为.csv格式,(用户Id,用户昵称,密码,邮箱),不需要标题行!
+                            <span class="leftspan">Rejudge From</span>
+                            <input name="rejudgefrom" id="rejudgefrom"/>
 
                         </div>
                         <div class="fileuploadcon">
-                            <span class="leftspan">用户文件</span>
-                            <input type="file" id="userfile" name="userfile"/>
-                        </div>
+                            <span class="leftspan">Rejudge To</span>
+                            <input name="rejudgeto" id="rejudgeto"/>
                         <div class="fileuploadcon submitbtn">
                             <input type="submit" id="submit" name="submit"/>
                         </div>

@@ -1,0 +1,4 @@
+.faqs a{color: #428bca;}
+.faqs>.quertion,.faqs>.q{    margin: 15px 0; font-size: 20px; font-weight: 600;}
+.answer{ margin: 10px 0; font-size: 20px; font-weight: 600; }
+.answerditail{ background: #F5F5F5; border: 1px solid #e3e3e3; padding: 10px; color: #333; border-radius: 4px; font-size: 14px; line-height: 1.5; }

@@ -1,5 +1,4 @@
-/*页面首部图片*/
-.topinfo{ background: #003840 url(../common/img/background-02.jpg)no-repeat center center; z-index: -1;padding-top: 60px; padding-bottom: 120px;}
+
 /*登录*/
 .singin{margin: 30px auto 200px;width: 500px;}
 .singinheader{position: relative;  padding: 10px 20px; color: #fff;  text-shadow: 0 -1px 0 rgba(0,0,0,0.3);font-size: 18px;background-color: #829aa8;  border: 1px solid #768995;  border-radius: 3px 3px 0 0;}

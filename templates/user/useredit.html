@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="static/common/css/reset.css">
     <link rel="stylesheet" href="static/common/css/common.css">
     <link rel="stylesheet" href="static/css/useredit.css">
-    <link rel = "Shortcut Icon" href="static/img/school.png">
-        <script language="javascript" src="static/common/js/notice.js"></script>
+    <link rel="Shortcut Icon" href="static/img/school.png">
+    <script language="javascript" src="static/common/js/notice.js"></script>
 
 </head>
 <body>
@@ -16,20 +16,21 @@
         <nav class="headnav">
             <a href="index"><h1 class="headnavalltitle">SDUSTOJ</h1></a>
             <ul class="headnavul clearfix">
-              <li class="headnavli"> <a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
-                <li class="headnavli"> <a href="webboard" class="headnavtitle">Web Board</a></li>
-                <li class="headnavli"> <a href="problemset" class="headnavtitle">ProblemSet</a></li>
-                <li class="headnavli"> <a href="status" class="headnavtitle">Status</a></li>
-                <li class="headnavli"> <a href="ranklist" class="headnavtitle">Ranklist</a></li>
-                <li class="headnavli"> <a href="contestlist" class="headnavtitle">Contest</a></li>
-                <li class="headnavli"> <a href="faq" class="headnavtitle">F.A.Qs</a></li>
+                <li class="headnavli"><a href="/" class="headnavtitle headnavtitleactive">Home</a></li>
+                <li class="headnavli"><a href="webboard" class="headnavtitle">Web Board</a></li>
+                <li class="headnavli"><a href="problemset" class="headnavtitle">ProblemSet</a></li>
+                <li class="headnavli"><a href="status" class="headnavtitle">Status</a></li>
+                <li class="headnavli"><a href="ranklist" class="headnavtitle">Ranklist</a></li>
+                <li class="headnavli"><a href="contestlist" class="headnavtitle">Contest</a></li>
+                <li class="headnavli"><a href="faq" class="headnavtitle">F.A.Qs</a></li>
             </ul>
             <div class="headnavactions">
                 <a href="user" class="headnavtitle">{{ user.nick }}</a>
                 <a href="#" class="headnavtitle headnavtitleactive">More&nbsp;<i class="icon-caret-down"></i></a>
                 <ul class="dropdown-menu " role="menu">
                     <li><a href="##">Edit Profile</a></li>
-                    <li><a href="##">Mail</a></li><hr>
+                    <li><a href="##">Mail</a></li>
+                    <hr>
                     <li><a href="loginout">Logout</a></li>
                 </ul>
             </div>
@@ -44,30 +45,39 @@
     </div>
 </div>
 <div class="common_Container">
-    <div class="singin">
-        <div class="singinheader">Edit User</div>
-        <div class="singinbody">
-            <label for="login_field">Username</label>
-            <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class="" value="{{ user.user_id }}" disabled="disabled"  type="text">
+    <form action="useredit" method="post">
+        <div class="singin">
+            <div class="singinheader">Edit User</div>
+            {% if result == pwderror %}
+                <div class="red">
+                两次密码不匹配!
+                </div>
+            {% endif %}
+            <div class="singinbody">
+                <label for="login_field">Username</label>
+                <input name = "uame" autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class=""
+                       value="{{ user.user_id }}" disabled="disabled" type="text">
 
-            <label for="curpassword">Current Password</label>
-            <input class="" id="curpassword" type="password"  autocomplete="off" >
+                <label for="curpassword">Current Password</label>
+                <input name="nick" class="" id="curpassword" type="password" autocomplete="off" value="{{ user.nick }}">
 
-            <label for="newpassword">New Password</label>
-            <input class="" id="newpassword" type="password"  autocomplete="off">
+                <label for="newpassword">New Password</label>
+                <input name="pwd" class="" id="newpassword" type="password" autocomplete="off" >
 
-            <label for="repeatpassword">Repeat Password</label>
-            <input class="" id="repeatpassword" type="password"  autocomplete="off">
+                <label for="repeatpassword">Repeat Password</label>
+                <input name="rpwd" class="" id="repeatpassword" type="password" autocomplete="off">
 
-            <label for="email">email</label>
-            <input class="" id="email" type="text"  autocomplete="off">
-
-            <label for="validate">verification code</label>
-            <input class="validateinput" id="validate" type="text"  autocomplete="off">
-            <img src="static/common/img/vdimg.jpg" alt="" class="validateimg">
-             <div><a class="btn" href="javascript:;">Save</a></div>
+                <label for="email">email</label>
+                <input name="email" class="" id="email" type="text" autocomplete="off" value="{{ user.email }}">
+                <!--
+                            <label for="validate">verification code</label>
+                            <input class="validateinput" id="validate" type="text"  autocomplete="off">
+                            <img src="static/common/img/vdimg.jpg" alt="" class="validateimg">
+                 -->
+                <div><input class="btn" type="submit" /></div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% include 'base/footer.html' %}
 </body>

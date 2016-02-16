@@ -7,7 +7,7 @@ document.writeln("               <li class=/"headerli headerlihover bell/"><a hr
 document.writeln("               <li class=/"headerli headerlihover setting/"><a href=/"javascript:;/"><i class=/"fa fa-cog/"></i></a></li>");
 document.writeln("               <li class=/"headerli headerlihover info/"><a href=/"javascript:;/"><i class=/"fa fa-info-circle/"></i></a></li>");
 document.writeln("               <li class=/"headerli user/"><a href=/"javascript:;/">");
-document.writeln("                   <img class=/"user-photo/" src=/"admin/common/img/user.jpg/" alt=/"user's Photo/">");
+document.writeln("                   <img class=/"user-photo/" src=/"admin/common/img/user.png/" alt=/"user's Photo/">");
 document.writeln("                       <span class=/"user-info/">");
 document.writeln("                           <small>欢迎您,</small>管理员");
 document.writeln("                       </span>");

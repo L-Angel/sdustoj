@@ -68,7 +68,7 @@
             <tr {% if item.status == 'Y' %} class="status_green" {% endif %}>
                 <td>{{ item.problem_id }}</td>
                 <td>{{ item.num }}</td>
-                <td><a href="problem?id={{ item.problem_id }}&contestid={{ contest.contest_id }}">{{ item.title }}</a></td>
+                <td><a href="problem?id={{ item.problem_id }}&contestid={{ contest.contest_id }}&l_id={{ contest.langmask }}">{{ item.title }}</a></td>
             </tr>
            {% endfor %}
             </tbody>

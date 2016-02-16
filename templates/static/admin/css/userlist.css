@@ -203,11 +203,15 @@ table tr td i.fa-eye{
 
 /*表格底部*/
 .tfoot {
+     position:fixed;
+    left:0px;
+    bottom:0;
+    _position:absolute;
+    _top:expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
     background-color: #EFF3F8;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    position: absolute;
     width: 100%;
 }
 .tfoot div{

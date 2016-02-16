@@ -122,6 +122,11 @@ $(function () {
         $(".popOperTip").fadeIn(1000);
         setTimeout('$(".popOperTip").fadeOut(1000)',1500);
     }
+     function isSpace(data) {
+        if (data == null || data == "null") { true;
+        }
+        return false;
+    }
     function alert_success() {
         var txt = "操作成功！";
         window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
@@ -131,9 +136,5 @@ $(function () {
         var txt = "操作失败!";
         window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning);
     }
-    function isSpace(data) {
-        if (data == null || data == "null") { true;
-        }
-        return false;
-    }
+
 });

@@ -80,7 +80,7 @@
             <dd></dd>
         </dl>
         <div class="button">
-            <a id="submit" {% if islogin == True %}href="submit?c_id={{ contestid }}&p_id={{ problem.problem_id }}"{% endif %} class="btn">Submit</a>
+            <a id="submit" {% if islogin == True %}href="submit?c_id={{ contestid }}&p_id={{ problem.problem_id }}&l_id={{ language_id }}"{% endif %} class="btn">Submit</a>
             {% if islogin != True %}
                 <a class="red" href="signin">请先登录!</a>
             {% endif %}

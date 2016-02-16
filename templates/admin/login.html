@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../static/common/css/font-awesome.min.css"/>
     <script src="../static/common/js/jquery-2.0.3.min.js"></script>
     <script src="../static/common/js/jquery.session.js"></script>
-      <script language="javascript" src="../static/js/jquery.cookie.js"></script>
+    <link rel="Shortcut Icon" href="../static/img/school.png">
+    <script language="javascript" src="../static/js/jquery.cookie.js"></script>
     <script language="javascript" src="../static/js/login.js"></script>
     <script language="javascript" src="../static/common/js/notice.js"></script>
 </head>
@@ -20,19 +21,19 @@
     </div>
     <div class="box">
         <form action="admin_login_deal" method="post">{% csrf_token %}
-        <div  id="form_login">
+            <div id="form_login">
             <span>
                 <label>帐号</label>
                 <input name="user_name" id="user_name" autocomplete="off" type="text" class="input-text" required="">
                 {% if user_error == True %}
-                <div class="info usernameinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>用户错误</div>
+                    <div class="info usernameinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>用户错误</div>
                 {% endif %}
             </span>
             <span>
                 <label>密码</label>
                 <input name="password" id="password" class="input-password" autocomplete="off" type="password">
                 {% if pwd_error == True %}
-                 <div class="info pwderror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>密码错误</div>
+                    <div class="info pwderror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>密码错误</div>
                 {% endif %}
             </span>
             <span>
@@ -40,15 +41,17 @@
                     <div class="arrow"></div>
                     <div class="code-img">
                         <!-- <img src="../php/validatecode.php?type=getValidate&amp;op=makecode&amp;admin=1&amp;nchash=7300fa57" name="codeimage" id="codeimage" border="0"/> -->
-                      <!--
-                        <img src="../php/vdimgck.php?type=getValidate&amp;" name="codeimage" id="codeimage" border="0"/>
-                      -->
+                        <!--
+                          <img src="../php/vdimgck.php?type=getValidate&amp;" name="codeimage" id="codeimage" border="0"/>
+                        -->
                     </div>
                     <a href="" id="hide" class="close" title="关闭">
                         <i class="fa fa-times"></i>
                     </a>
                     <!-- <a href="JavaScript:void(0);" onclick="javascript:document.getElementById('codeimage').src='../php/validatecode.php?type=getValidate&amp;op=makecode&amp;admin=1&amp;nchash=7300fa57&amp;t=' + Math.random();" class="change" title="看不清,点击更换验证码"> -->
-                    <a href="JavaScript:void(0);" onclick="javascript:document.getElementById('codeimage').src='../php/vdimgck.php?type=getValidate&amp;t=' + Math.random();" class="change" title="看不清,点击更换验证码">
+                    <a href="JavaScript:void(0);"
+                       onclick="javascript:document.getElementById('codeimage').src='../php/vdimgck.php?type=getValidate&amp;t=' + Math.random();"
+                       class="change" title="看不清,点击更换验证码">
                         <i class="fa fa-refresh"></i>
                     </a>
                 </div>
@@ -61,14 +64,14 @@
             <span>
                 <input name="" class="submit" type="submit" value="登录">
             </span>
-        </div>
-      </form>
+            </div>
+        </form>
     </div>
 </div>
 <script src="../static/js/login.js"></script>
 <script>
-    $(function(){
-        
+    $(function () {
+
     });
 </script>
 </body>

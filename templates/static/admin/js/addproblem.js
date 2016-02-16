@@ -13,8 +13,8 @@
             $timelimit=$("#timelimit").val();
             $memlimit=$("#memlimit").val();
             $descripe=$("#editorDesc").val();
-            $input=$("#editorOutput").val();
-            $output=$("#editorInput").val();
+            $output=$("#editorOutput").val();
+            $input=$("#editorInput").val();
             $sampleinput=$("#editorSampleOutput").val();
             $sampleoutput=$("#editorSampleInput").val();
             $hint=$("#editorHint").val();
