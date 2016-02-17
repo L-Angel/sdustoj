@@ -102,10 +102,10 @@
 
 
         $("#nextpage").bind("click", function () {
-            window.location.href = "newslist?op=+&page_num={{ cur_page }}";
+            window.location.href = "newslist?op=add&page_num={{ cur_page }}";
         })
         $("#prepage").bind("click", function () {
-            window.location.href = "newslist?op=-&page_num={{ cur_page }}";
+            window.location.href = "newslist?op=sub&page_num={{ cur_page }}";
         })
 
         $("#firstpage").bind("click", function () {

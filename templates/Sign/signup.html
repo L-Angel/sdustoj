@@ -43,7 +43,7 @@
 </div>
 <div class="common_Container">
     <div class="singin">
-        <form action="save" method="post">{% csrf_token %}
+        <form action="signup" method="post">{% csrf_token %}
             <div class="singinheader">Sign up</div>
             <div class="singinbody">
 
@@ -54,6 +54,8 @@
                         <span class="red">请输入正确信息</span>
                     {% elif error == 3 %}
                         <span class="red">用户已存在</span>
+                    {% elif error == 4 %}
+                        <span class="red">验证码错误</span>
                     {% endif %}
                 </label>
                 <input autocapitalize="off" autocomplete="off" autofocus="autofocus" id="login_field" class=""
@@ -74,7 +76,12 @@
                             <label for="validate">verification code</label>
                             <input class="validateinput" id="validate" type="text"  autocomplete="off" name="validate">
                             <img src="static/common/img/vdimg.jpg" alt="" class="validateimg">
+
                             -->
+                <div class="verifycode">
+                    <label>Verify Code</label>
+                    <input type="text" name="code"><img src="/captcha/code"/>
+                </div>
                 <div>
                     <button type="submit" class="btn"><a>Sign up</a></button>
                 </div>

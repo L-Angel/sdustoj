@@ -43,7 +43,7 @@
 </div>
 <div class="common_Container">
     <div class="singin">
-        <form action="login" method="post">
+        <form action="signin" method="post">
             {% csrf_token %}
             <div class="singinheader">Sign in</div>
             <div class="red center">
@@ -51,6 +51,8 @@
                 PASSWORD ERROR!
             {% elif error == 'usererror' %}
                 USER IS NOT EXITS!
+                {% elif error == 'verifyerror' %}
+                Verify Code error!
             {% endif %}
             </div>
             <div class="singinbody">
@@ -59,6 +61,10 @@
                        id="login_field" class="" type="text">
                 <label for="password">Password <a href="#" class="forgetpwd">(forgot password)</a></label>
                 <input type="password" class="" id="password" name="pw" type="password">
+                <div class="verifycode">
+                    <label>Verify Code</label>
+                <input type="text" name="code"><img src="/captcha/code"/>
+                    </div>
                 <input type="submit" id="submit" class="btn" href="javascript:;"/>
             </div>
         </form>

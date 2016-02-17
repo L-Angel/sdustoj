@@ -68,7 +68,6 @@ body{
     margin: 30px 0 0 0;
 }
 .login-layout .box span {
-    display: block;
     float: left;
     padding: 0;
     margin: 0 6px 0 0;
@@ -80,7 +79,6 @@ body{
     font-weight: 600;
     line-height: 20px;
     color: #555555;
-    display: block;
     height: 20px;
     padding-right: 10px;
     border-right: dotted 1px #999;
@@ -128,7 +126,6 @@ body{
     z-index: 9;
     top: -40px;
     left: -10px;
-    display: none;
     box-shadow: 0 2px 2px 2px rgba(0,0,0,0.25);
 }
 .input-code {
@@ -136,9 +133,10 @@ body{
 }
 /*验证码图片*/
 .code img {
-    width: 90px;
+    width: 100px;
     height: 26px;
-    position: absolute;
+    position: relative;
+    margin-left: auto;
     z-index: 1;
     top: 4px;
     left: 4px;
@@ -162,7 +160,6 @@ body{
     color: #808080;
 }
 .code .close {
-    display: block;
     width: 10px;
     height: 10px;
     padding: 1px;
@@ -177,7 +174,6 @@ body{
     -webkit-border-radius: 5px/*webkit*/;
 }
 .code .change {
-    display: block;
     width: 10px;
     height: 10px;
     padding: 1px;

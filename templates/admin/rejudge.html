@@ -41,7 +41,7 @@
                     Rejudge (From solution_id-----To solution_id)
                 </div>
                 <div class="fileupload">
-                    <form action="rejudge_save" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <form action="rejudge_save" method="post">{% csrf_token %}
                         <!--<table>
                         <tr><td><span class="problemtitle leftspan">题目编号</span><input type="text" id="problem_id" name="problem_id"/></td></tr>
                         <tr><td><span class="problemfile leftspan">题目文件</span><input type="file" multiple="multiple" id="files" name="files"/></td></tr>
@@ -49,12 +49,13 @@
                         </table>-->
                         <div class="fileuploadcon">
                             <span class="leftspan">Rejudge From</span>
-                            <input name="rejudgefrom" id="rejudgefrom"/>
+                            <input type="text" name="rejudgefrom" id="rejudgefrom">
 
                         </div>
                         <div class="fileuploadcon">
                             <span class="leftspan">Rejudge To</span>
-                            <input name="rejudgeto" id="rejudgeto"/>
+                            <input type="text" name="rejudgeto" id="rejudgeto">
+                        </div>
                         <div class="fileuploadcon submitbtn">
                             <input type="submit" id="submit" name="submit"/>
                         </div>

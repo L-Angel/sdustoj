@@ -10,7 +10,6 @@
     <link rel="Shortcut Icon" href="../static/img/school.png">
     <script language="javascript" src="../static/js/jquery.cookie.js"></script>
     <script language="javascript" src="../static/js/login.js"></script>
-    <script language="javascript" src="../static/common/js/notice.js"></script>
 </head>
 <body>
 <div class="bg-dot"></div>
@@ -20,7 +19,7 @@
         <h6>|&nbsp;&nbsp;SDUSTOJ管理平台</h6>
     </div>
     <div class="box">
-        <form action="admin_login_deal" method="post">{% csrf_token %}
+        <form action="login" method="post">{% csrf_token %}
             <div id="form_login">
             <span>
                 <label>帐号</label>
@@ -38,28 +37,42 @@
             </span>
             <span>
                 <div class="code">
+                    <!--
                     <div class="arrow"></div>
                     <div class="code-img">
                         <!-- <img src="../php/validatecode.php?type=getValidate&amp;op=makecode&amp;admin=1&amp;nchash=7300fa57" name="codeimage" id="codeimage" border="0"/> -->
-                        <!--
-                          <img src="../php/vdimgck.php?type=getValidate&amp;" name="codeimage" id="codeimage" border="0"/>
-                        -->
+                    <!--
+                      <img src="../php/vdimgck.php?type=getValidate&amp;" name="codeimage" id="codeimage" border="0"/>
+                    -->
+                    <!--
+                        <img src="/captcha/code" name="codeimage" id="codeimage"/>
+
+
                     </div>
-                    <a href="" id="hide" class="close" title="关闭">
-                        <i class="fa fa-times"></i>
-                    </a>
+                -->
+                    <img src="/captcha/code" name="codeimage" id="codeimage"/>
+
+                    <!--
+                                        <a href="" id="hide" class="close" title="关闭">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                        -->
                     <!-- <a href="JavaScript:void(0);" onclick="javascript:document.getElementById('codeimage').src='../php/validatecode.php?type=getValidate&amp;op=makecode&amp;admin=1&amp;nchash=7300fa57&amp;t=' + Math.random();" class="change" title="看不清,点击更换验证码"> -->
-                    <a href="JavaScript:void(0);"
-                       onclick="javascript:document.getElementById('codeimage').src='../php/vdimgck.php?type=getValidate&amp;t=' + Math.random();"
-                       class="change" title="看不清,点击更换验证码">
-                        <i class="fa fa-refresh"></i>
-                    </a>
+                    <!--
+                     <a href="JavaScript:void(0);"
+                        onclick="javascript:document.getElementById('codeimage').src='../php/vdimgck.php?type=getValidate&amp;t=' + Math.random();"
+                        class="change" title="看不清,点击更换验证码">
+                         <i class="fa fa-refresh"></i>
+                     </a>
+                     -->
                 </div>
-                <!--
-                <input name="captcha" type="text" required="" class="input-code" id="captcha" placeholder="输入验证" autocomplete="off" value="">
-                <div class="info modiinfo"><i class="triangleup"></i><i class="fa fa-info-circle"></i>请输入验证码</div>
-                  <div class="info modifierror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>验证码错误</div>
-                 -->
+                <input name="code" type="text" required="" class="input-code" id="code" placeholder="输入验证"
+                       autocomplete="off" >
+
+                {% if verify_error == True %}
+                    <div class="info modifierror"><i class="triangleup"></i><i class="fa fa-info-circle"></i>验证码错误</div>
+                {% endif %}
+
             </span>
             <span>
                 <input name="" class="submit" type="submit" value="登录">

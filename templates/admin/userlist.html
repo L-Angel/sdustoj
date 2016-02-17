@@ -143,10 +143,10 @@
 
 
         $("#nextpage").bind("click", function () {
-            window.location.href = "userlist?op=+&page_num={{ cur_page }}";
+            window.location.href = "userlist?op=add&page_num={{ cur_page }}";
         })
         $("#prepage").bind("click", function () {
-            window.location.href = "userlist?op=-&page_num={{ cur_page }}";
+            window.location.href = "userlist?op=sub&page_num={{ cur_page }}";
         })
 
         $("#firstpage").bind("click", function () {

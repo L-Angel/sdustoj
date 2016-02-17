@@ -164,10 +164,10 @@
 
 
         $("#nextpage").bind("click", function () {
-            window.location.href = "problemlist?op=+&page_num={{ cur_page }}";
+            window.location.href = "problemlist?op=add&page_num={{ cur_page }}";
         })
         $("#prepage").bind("click", function () {
-            window.location.href = "problemlist?op=-&page_num={{ cur_page }}";
+            window.location.href = "problemlist?op=sub&page_num={{ cur_page }}";
         })
 
         $("#firstpage").bind("click", function () {

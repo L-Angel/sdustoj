@@ -82,10 +82,10 @@
 
 
         $("#nextpage").bind("click", function () {
-            window.location.href = "userloginlog?op=+&page_num={{ cur_page }}";
+            window.location.href = "userloginlog?op=add&page_num={{ cur_page }}";
         })
         $("#prepage").bind("click", function () {
-            window.location.href = "userloginlog?op=-&page_num={{ cur_page }}";
+            window.location.href = "userloginlog?op=sub&page_num={{ cur_page }}";
         })
 
         $("#firstpage").bind("click", function () {
