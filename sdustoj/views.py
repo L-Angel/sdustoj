@@ -15,6 +15,7 @@ import re
 import datetime
 from django.core import serializers
 import shutil
+from DjangoCaptcha import Captcha
 from django.utils.timezone import utc
 from django.utils.timezone import local
 import operator
@@ -66,13 +67,21 @@ def admin_control(request):
 Deal General user login in system,
 check user login info,ip just so so.
 '''
-def Login(request, user=None, u="", p=""):
+def signin(request, user=None, u="", p=""):
+    ca=Captcha(request)
     c = RequestContext(request)
+    code=''
     ip = request.META.get('REMOTE_ADDR', None)
     if 'uname' in request.POST:
         u = request.POST.get('uname')
+    else :
+        return render_to_response('Sign/signin.html', c)
     if 'pw' in request.POST:
         p = request.POST.get('pw')
+    if 'code' in request.POST:
+        code=request.POST.get('code')
+        if not ca.validate(code):
+            return render_to_response('Sign/signin.html', {'error': 'verifyerror'}, c)
     try:
         user = Users.objects.get(user_id=str(u))
     except Users.DoesNotExist:
@@ -243,18 +252,20 @@ def sign(request):
     c = RequestContext(request)
     return render_to_response('Sign/sign.html', c)
 
-'''
-Render the signup page
-'''
-def signup(request):
-    c = RequestContext(request)
-    return render_to_response('Sign/signup.html', c)
+
 
 '''
 Render the registe data
 '''
-def save(request):
+def signup(request):
     c = RequestContext(request)
+    if 'uname' not in request.POST:
+        return render_to_response("Sign/signup.html", c)
+    ca = Captcha(request)
+    if 'code' in request.POST:
+        code= request.POST.get('code')
+        if not ca.validate(code):
+            return render_to_response("Sign/signup.html", {'error': 4}, c)
     uname = request.POST.get('uname')
     pwd = request.POST.get('pwd')
     rpwd = request.POST.get('rpwd')
@@ -275,12 +286,8 @@ def save(request):
     else:
         return render_to_response("Sign/signup.html", {'error': 1}, c)
 
-'''
-render the signin page
-'''
-def signin(request):
-    c = RequestContext(request)
-    return render_to_response('Sign/signin.html', c)
+
+
 
 '''
 render the status page
@@ -294,13 +301,13 @@ def status(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     if 'c_id' in request.GET:
         contest_id = request.GET.get('c_id')
-        if contest_id != -1 and contest_id != None and contest_id != 'None':
+        if str(contest_id).isdigit() and int(contest_id) != -1 and contest_id != None and contest_id != 'None':
             ifcontest='True'
             statusinfo = Statusinfo.objects.filter(contest_id=contest_id).order_by('-solution_id').values('status','problem_id','contest_id','solution_id','user_id','memory','time','in_date','language','code_length','judgetime','valid','num','language_name','ip')
             for item in statusinfo:
@@ -312,11 +319,12 @@ def status(request):
     else:
         statusinfo = Statusinfo.objects.all().order_by('-solution_id')
     p = Paginator(statusinfo, config.page_count)
-    statusinfo = p.page(page_num).object_list
     page = p.page_range
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    statusinfo = p.page(page_num).object_list
     return render_to_response('Status/status.html', {'statusinfo': statusinfo, 'cur_page': page_num,'ifcontest':ifcontest}, c)
 
 '''
@@ -400,9 +408,9 @@ def ranklist(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     users = list(Users.objects.all().values('nick', 'user_id'))
     for user in users:
@@ -419,12 +427,12 @@ def ranklist(request):
         user['index'] = count
         count += 1
     p = Paginator(users, config.page_count)
-    users = p.page(page_num).object_list
     page = p.page_range
-    page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    users = p.page(page_num).object_list
     return render_to_response('ranklist/ranklist.html', {'users': users, 'cur_page': page_num}, c)
 
 
@@ -513,22 +521,22 @@ def sub_source(request):
     return HttpResponseRedirect('status?c_id=' + str(contestid), c)
 
 '''
-Render the admin loginpage
+Render the admin login page
 '''
 def admin_login(request):
     c = RequestContext(request)
-    return render_to_response("admin/login.html", c)
-
-'''
-Render the admin login page
-'''
-def admin_login_deal(request):
-    c = RequestContext(request)
     user_name = ''
+    ca =Captcha(request)
     pwd = ''
     ip=request.META.get('REMOTE_ADDR',None)
     if 'user_name' in request.POST:
         user_name = request.POST.get('user_name')
+    else :
+        return render_to_response("admin/login.html", c)
+    if 'code' in request.POST:
+        code = request.POST.get('code')
+        if not ca.validate(code):
+            return render_to_response('admin/login.html', {'verify_error': True}, c)
     if 'password' in request.POST:
         pwd = request.POST.get('password')
     if user_name != '':
@@ -658,19 +666,18 @@ def admin_problemlist(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     problems = Problem.objects.all().order_by('problem_id')
     p = Paginator(problems, config.admin_page_cuont)
-    problems = p.page(page_num).object_list
     page = p.page_range
-    if len(page) <= 0:
-        page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    problems = p.page(page_num).object_list
     return render_to_response('admin/problemlist.html',
                               {'problems': problems, 'cur_page': page_num, 'totalpage': page[-1]}, c)
 
@@ -721,19 +728,18 @@ def admin_contestlist(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     contests = Contestinfo.objects.all().order_by('-contest_id')
     p = Paginator(contests, config.admin_page_cuont)
-    contests = p.page(page_num).object_list
     page = p.page_range
-    if len(page) <= 0:
-        page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    contests = p.page(page_num).object_list
     return render_to_response('admin/admin_contestlist.html',
                               {'contests': contests, 'cur_page': page_num, 'totalpage': page[-1]}, c)
 
@@ -747,19 +753,18 @@ def admin_newslist(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     news = News.objects.all().order_by('-news_id')
     p = Paginator(news, config.admin_page_cuont)
-    news = p.page(page_num).object_list
     page = p.page_range
-    if len(page) <= 0:
-        page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    news = p.page(page_num).object_list
     return render_to_response('admin/newslist.html', {'news': news, 'cur_page': page_num, 'totalpage': page[-1]}, c)
 
 '''
@@ -862,19 +867,18 @@ def admin_userlist(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     users = Users.objects.all().order_by('reg_time')
     p = Paginator(users, config.admin_page_cuont)
-    users = p.page(page_num).object_list
     page = p.page_range
-    if len(page) <= 0:
-        page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    users = p.page(page_num).object_list
     return render_to_response('admin/userlist.html', {'users': users, 'cur_page': page_num, 'totalpage': page[-1]}, c)
 
 
@@ -982,19 +986,18 @@ def admin_userloginlog(request):
         page_num = int(request.GET.get('page_num'))
     if 'op' in request.GET:
         op = request.GET.get('op')
-        if '+' in str(op):
+        if 'add' in str(op):
             page_num = page_num + 1
-        if '-' in str(op) and page_num > 1:
+        if 'sub' in str(op) and page_num > 1:
             page_num = page_num - 1
     userlog = Loginlog.objects.all().order_by('-time')
     p = Paginator(userlog, config.admin_page_cuont)
-    users = p.page(page_num).object_list
     page = p.page_range
-    if len(page) <= 0:
-        page = [1]
-    if len(page) >= 1:
-        if page_num != page[-1]:
-            page_num = page[-1]
+    if len(page) == 0:
+        page_num=1
+    elif len(page) < page_num:
+        page_num = page[-1]
+    users = p.page(page_num).object_list
     return render_to_response('admin/userloginlog.html', {'userlog': userlog, 'cur_page': page_num, 'totalpage': page[-1]}, c)
 
 '''
@@ -1055,7 +1058,8 @@ def admin_adduserfile(request):
     return render_to_response('admin/adduser.html',{'result':'success'},c)
 
 def admin_rejudge(request):
-    return render_to_response('admin/rejudge.html')
+    c=RequestContext(request)
+    return render_to_response('admin/rejudge.html',c)
 
 '''
 deal rejudge data
@@ -1064,15 +1068,16 @@ def admin_rejudge_save(request):
     c=RequestContext(request)
     rejudgefrom=request.POST.get('rejudgefrom')
     rejudgeto=request.POST.get('rejudgeto')
+
     try:
-        if str(rejudgefrom).isdigit() and str(rejudgeto).isdigit():
+        if rejudgefrom.isdigit() and rejudgeto.isdigit():
             problems=Solution.objects.filter(solution_id__gte=int(rejudgefrom),solution_id__lte=int(rejudgeto))
             for item in problems:
                 item.result=0
                 item.save()
         else:
             return render_to_response('admin/rejudge.html',{'result':'failure'},c)
-    except:
+    except Exception,e:
         return render_to_response('admin/rejudge.html',{'result':'failure'},c)
     return render_to_response('admin/rejudge.html',{'result':'success'},c)
 
