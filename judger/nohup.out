@@ -1,0 +1,68 @@
+2016-01-29 05:24:04,697 --- Thread-1 idle
+2016-01-29 05:24:04,697 --- Thread-2 idle
+2016-01-29 05:24:04,698 --- Thread-3 idle
+2016-01-29 05:24:04,698 --- Thread-4 idle
+Exception in thread get_task:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "protect.py", line 458, in put_task_into_queue
+    pro_lang=language_list[i]
+TypeError: list indices must be integers, not tuple
+
+2016-01-29 05:52:07,116 --- Thread-1 idle
+2016-01-29 05:52:07,116 --- Thread-2 idle
+2016-01-29 05:52:07,117 --- Thread-3 idle
+2016-01-29 05:52:07,118 --- Thread-4 idle
+2016-01-29 05:52:58,876 --- judging 1
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "protect.py", line 433, in worker
+    user_id)  # 评判
+  File "protect.py", line 87, in run
+    if check_dangerous_code(solution_id, language) == False:
+  File "protect.py", line 149, in check_dangerous_code
+    code = file('/work/%s/main.cpp' % solution_id).read()
+IOError: [Errno 2] No such file or directory: '/work/1/main.cpp'
+
+2016-01-30 04:41:59,191 --- Thread-1 idle
+2016-01-30 04:41:59,192 --- Thread-3 idle
+2016-01-30 04:41:59,193 --- Thread-4 idle
+2016-01-30 04:41:59,192 --- Thread-2 idle
+2016-01-30 04:42:01,070 --- judging 2
+2016-01-30 04:42:03,163 --- 2 result 7
+2016-01-30 04:42:03,286 --- Thread-3 idle
+2016-01-30 04:48:27,731 --- judging 1
+2016-01-30 04:48:27,866 --- judging 2
+Exception in thread Thread-4:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "protect.py", line 433, in worker
+    user_id)  # 评判
+  File "protect.py", line 90, in run
+    compile_result = compile(solution_id, language)
+  File "protect.py", line 207, in compile
+    update_compile_info(solution_id, err + out)  # 编译失败,更新题目的编译错误信息
+  File "protect.py", line 170, in update_compile_info
+    run_sql(sql)
+  File "/home/l-angel/sdustoj/judger/db.py", line 24, in run_sql
+    cur.execute(sql)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/cursors.py", line 174, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1062, "Duplicate entry '1' for key 'PRIMARY'")
+
+python: can't open file 'protect.py': [Errno 2] No such file or directory
+python: can't open file 'protect.py': [Errno 2] No such file or directory
+python: can't open file 'protect.py': [Errno 2] No such file or directory
+python: can't open file 'protect.py': [Errno 2] No such file or directory

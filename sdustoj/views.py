@@ -67,10 +67,11 @@ def admin_control(request):
 Deal General user login in system,
 check user login info,ip just so so.
 '''
-def signin(request, user=None, u="", p=""):
+def signin(request, user=None, p=""):
     ca=Captcha(request)
     c = RequestContext(request)
     code=''
+    u=''
     ip = request.META.get('REMOTE_ADDR', None)
     if 'uname' in request.POST:
         u = request.POST.get('uname')
@@ -82,6 +83,8 @@ def signin(request, user=None, u="", p=""):
         code=request.POST.get('code')
         if not ca.validate(code):
             return render_to_response('Sign/signin.html', {'error': 'verifyerror'}, c)
+    else:
+        return render_to_response('Sign/signin.html',  c)
     try:
         user = Users.objects.get(user_id=str(u))
     except Users.DoesNotExist:
@@ -179,7 +182,7 @@ def problem(request):
         islogin = True
 
     pid = request.GET.get('id')
-    if 'contest_id' in request.GET:
+    if 'contestid' in request.GET:
         contestid = request.GET.get('contestid')
     if 'l_id' in request.GET:
         language_id = request.GET.get('l_id')
@@ -266,6 +269,8 @@ def signup(request):
         code= request.POST.get('code')
         if not ca.validate(code):
             return render_to_response("Sign/signup.html", {'error': 4}, c)
+    else :
+        return render_to_response("Sign/signup.html", c)
     uname = request.POST.get('uname')
     pwd = request.POST.get('pwd')
     rpwd = request.POST.get('rpwd')
@@ -283,8 +288,11 @@ def signup(request):
                   ip=str(ip), activated=str(555), submit=0, solved=0)
         u.save()
         return HttpResponseRedirect('index')
-    else:
+    elif pwd != '' and rpwd != '':
         return render_to_response("Sign/signup.html", {'error': 1}, c)
+    else :
+        return render_to_response("Sign/signup.html", c)
+
 
 
 
